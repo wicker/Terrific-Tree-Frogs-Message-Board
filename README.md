@@ -10,12 +10,23 @@ Clone the repository.
 git clone https://github.com/wicker/Readable.git
 ```
 
-Install project dependencies and start the dev server.
+Install and start the API backend server.
 
 ```
+cd backend
+npm install
+node server
+```
+
+Install project dependencies and start the app.
+
+```
+cd frontend
 npm install
 npm start
 ```
+
+Your browser should automatically open to the correct page.
 
 # User Interface
 
