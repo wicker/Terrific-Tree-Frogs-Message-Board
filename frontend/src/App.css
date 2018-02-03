@@ -1,5 +1,92 @@
+body {
+  background-color: #aee3c9;
+  font-size: 16px;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#sidebar {
+  margin: 20px 0 0 0;
+  width: 25%;
+  float: left;
+}
+
+#sidebar h1 {
+  background-color: #339a67;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  margin: 10px 0 0 0;
+  font-size: 1.8em;
+}
+
+#sidebar .add-post {
+  margin: 10px 0 20px 0;
+  border-radius: 10px;
+}
+
+#sidebar .add-post a:hover {
+  border-radius: 10px;
+}
+
+#sidebar ul {
+  padding: 0;
+  margin: 0 0 20px 0;
+  list-style-type: none;
+  color: #000;
+  background-color: #4cc388;
+  border-radius: 0 0 10px 10px;
+}
+
+#sidebar li {
+  line-height: 60px;
+  font-size: 1.3em;
+}
+
+#sidebar ul li a {
+  display: block;
+  color: #000;
+}
+
+#sidebar ul li a:hover {
+  background-color: #fff;
+}
+
+#content {
+  width: 70%;
+  float: right;
+  margin: 20px 0 0 0;
+}
+
+.post {
+  padding: 0;
+  margin: 0 0 40px;
+  color: #000;
+  background-color: #4cc388;
+  border-radius: 10px;
+}
+
+.post h2 {
+  background-color: #339a67;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  font-size: 2em;
+  border-radius: 10px 10px 0 0;
+}
+
+.post-meta {
+  background-color: #3bb277;
+  line-height: 50px;
+  font: 30px;
+  border-radius: 0 0 10px 10px ;
+}
+
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .App-logo {
@@ -8,14 +95,19 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #339a67;
   height: 150px;
-  padding: 20px;
+  margin: 0;
   color: white;
+  line-height: 150px;
+  overflow: hidden;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3em;
+  margin: 0;
+  padding: 0;
+  color: #082c1a;
 }
 
 .App-intro {

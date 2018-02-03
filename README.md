@@ -42,7 +42,7 @@ The create/edit view allows a user to create or a edit posts.
 
 # Screenshots
 
-None yet
+![](img/rough-preview.png)
 
 # Design Notes
 
