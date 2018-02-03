@@ -1,5 +1,5 @@
 body {
-  background-color: #aee3c9;
+  background-color: #d8cce5;
   font-size: 16px;
 }
 
@@ -15,11 +15,12 @@ body {
 }
 
 #sidebar h1 {
-  background-color: #339a67;
+  background-color: #400080;
   padding: 10px;
   border-radius: 10px 10px 0 0;
   margin: 10px 0 0 0;
   font-size: 1.8em;
+  color: #d8cce5;
 }
 
 #sidebar .add-post {
@@ -36,7 +37,7 @@ body {
   margin: 0 0 20px 0;
   list-style-type: none;
   color: #000;
-  background-color: #4cc388;
+  background-color: #794ca6;
   border-radius: 0 0 10px 10px;
 }
 
@@ -64,20 +65,21 @@ body {
   padding: 0;
   margin: 0 0 40px;
   color: #000;
-  background-color: #4cc388;
+  background-color: #b299cc;
   border-radius: 10px;
 }
 
 .post h2 {
-  background-color: #339a67;
+  background-color: #400080;
   padding: 10px;
   margin: 10px 0 0 0;
   font-size: 2em;
   border-radius: 10px 10px 0 0;
+  color: #ebe5f2;
 }
 
 .post-meta {
-  background-color: #3bb277;
+  background-color: #8c66b2;
   line-height: 50px;
   font: 30px;
   border-radius: 0 0 10px 10px ;
@@ -95,10 +97,10 @@ body {
 }
 
 .App-header {
-  background-color: #339a67;
+  background-color: #400080;
   height: 150px;
   margin: 0;
-  color: white;
+  color: #ebe5f2;
   line-height: 150px;
   overflow: hidden;
 }
@@ -107,7 +109,6 @@ body {
   font-size: 3em;
   margin: 0;
   padding: 0;
-  color: #082c1a;
 }
 
 .App-intro {

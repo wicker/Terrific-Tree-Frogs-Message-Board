@@ -44,6 +44,8 @@ The create/edit view allows a user to create or a edit posts.
 
 ![](img/rough-preview.png)
 
+![](img/rough-purple.png)
+
 # Design Notes
 
 The app is wrapped in a Provider.
