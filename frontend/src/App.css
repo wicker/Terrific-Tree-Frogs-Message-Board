@@ -78,6 +78,10 @@ body {
   color: #ebe5f2;
 }
 
+.post img {
+  max-width: 100%;
+}
+
 .post-meta {
   background-color: #8c66b2;
   line-height: 50px;
@@ -109,6 +113,11 @@ body {
   font-size: 3em;
   margin: 0;
   padding: 0;
+}
+
+.App-title a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .App-intro {
