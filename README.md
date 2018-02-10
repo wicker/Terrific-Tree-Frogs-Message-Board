@@ -34,11 +34,50 @@ There are four views.
 
 The main page lists all posts and all categories with links to the appropriate category view. It also allows the user to add a post and sort the list of posts by timestamp or vote score. 
 
+- Paths:
+  - /
+
+- Actions:
+  - GET_ALL_COMMENTS
+  - GET_ALL_POSTS
+  - GET_ALL_CATEGORIES
+  - SORT_BY_TIMESTAMP
+  - SORT_BY_VOTECOUNT
+
 The category view shows a filtered list of posts belonging to that category.
+
+- Paths:
+  - /category/:id
+
+- Actions:
+  - GET_ALL_COMMENTS
+  - GET_ALL_POSTS
+  - GET_ALL_CATEGORIES
 
 The post view shows the post metadata, the post itself, associated comments with the ability to edit/remove comments, and a comment box allowing the user to add a new comment.
 
+- Paths:
+  - /post/:id
+
+- Actions:
+  - GET_ALL_COMMENTS
+  - GET_ALL_POSTS
+  - GET_ALL_CATEGORIES
+ 
 The create/edit view allows a user to create or a edit posts.
+
+- Paths: 
+  - /add
+  - /edit/:id
+  - /delete/:id
+
+- Actions:
+  - GET_ALL_COMMENTS
+  - GET_ALL_POSTS
+  - GET_ALL_CATEGORIES
+  - ADD_POST
+  - EDIT_POST
+  - DELETE_POST
 
 # Screenshots
 

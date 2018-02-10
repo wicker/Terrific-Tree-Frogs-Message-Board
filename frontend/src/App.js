@@ -106,37 +106,51 @@ class PostView extends Component {
 
 }
 
+class Header extends Component {
+  render() {
+    return (
+      <header className="App-header">
+        <h1 className="App-title">
+          <a href="/">Terrific Tree Frogs Message Board</a>
+        </h1>
+      </header>
+    )
+  }
+}
+
+class Sidebar extends Component {
+  render() {
+    return (
+      <aside id="sidebar">
+          <ul className="add-post">
+            <li><a href="/create">Add a Post</a></li>
+          </ul>
+        <h1>Sort by</h1>
+        <ul>
+          <li><a href="/">Date</a></li>
+          <li><a href="/">Votes</a></li>
+        </ul>
+        <h1>Categories</h1>
+        <ul>
+          <li><a href="/category">Frogs</a></li>
+          <li><a href="/category">Not Frogs</a></li>
+        </ul>
+      </aside>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
 			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">
-  					<a href="/">Terrific Tree Frogs Message Board</a>
-					</h1>
-				</header>
+        <Header />
 				<div className="wrapper">
-					<aside id="sidebar">
-							<ul className="add-post">
-								<li><a href="/create">Add a Post</a></li>
-							</ul>
-						<h1>Sort by</h1>
-						<ul>
-							<li><a href="/">Date</a></li>
-							<li><a href="/">Votes</a></li>
-						</ul>
-						<h1>Categories</h1>
-						<ul>
-							<li><a href="/category">Frogs</a></li>
-							<li><a href="/category">Not Frogs</a></li>
-						</ul>
-					</aside>
-
+          <Sidebar />
 					<div>
 						<Switch>
 							<Route path='/category' render={({ history }) => (
 								<CategoryView />
-
 							)}/>
 							<Route path='/post' render={({ history }) => (
 								<PostView />
