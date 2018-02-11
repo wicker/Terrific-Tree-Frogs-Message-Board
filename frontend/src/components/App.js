@@ -7,7 +7,7 @@ class CategoryView extends Component {
   render () {
     return (
 
-			<section id="content">
+      <section id="content">
         <h1>CategoryView</h1>
       </section>
 

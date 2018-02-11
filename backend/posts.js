@@ -7,11 +7,7 @@ const defaultData = {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
     title: 'The Tree Frog',
-    body: 'It is not the chambers of the heart that hold him
-      captive, but the hallways of the mind. Why
-      his image burning green and blue persists
-      —the face, the eyes questioning, the shape
-      of his head—is beyond anything I can understand.',
+    body: "It is not the chambers of the heart that hold him",
     author: 'foobear',
     category: 'frogs',
     voteScore: 2,
