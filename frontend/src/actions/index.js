@@ -1,21 +1,13 @@
-export const ADD_RECIPE = 'ADD_RECIPE'
-export const REMOVE_FROM_CALENDAR = 'REMOVE_FROM_CALENDAR'
+import * as ReadableAPI from '../utils/ReadableAPI.js'
 
-/* takes in an object that has three props */
-export function addRecipe ({ day, recipe, meal }) {
-  return {
-    type: ADD_RECIPE,
-    recipe,
-    day,
-    meal
-  }
-}
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 
-export function removeFromCalendar ({ day, meal }) {
-  return {
-    type: REMOVE_FROM_CALENDAR,
-    day,
-    meal
-  }
-}
+export const updateCategories = categories => ({
+  type: GET_CATEGORIES,
+  categories
+})
 
+export const getCategories = () => dispatch =>
+  ReadableAPI.getCategories().then(categories =>
+    dispatch(updateCategories(categories))
+)
