@@ -23,7 +23,7 @@ class MainPage extends Component {
                 { post.body }
               </p>
               <p className="post-meta">
-                { post.timestamp } ({ post.voteScore } points)- <a href="#">Downvote</a> - <a href="#">Upvote</a> - <a href="#">View Post</a> - 12 comments
+                { post.timestamp } ({ post.voteScore } points)- <a href="#">Downvote</a> - <a href="#">Upvote</a> - <a href="#">View Post</a>
               </p>
             </article>)
         }

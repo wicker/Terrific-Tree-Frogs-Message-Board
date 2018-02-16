@@ -20,6 +20,11 @@ export const updatePosts = posts => ({
 
 export const getAllPosts = () => dispatch =>
   ReadableAPI.getPosts().then(posts =>
-    dispatch(updatePosts(posts))
+	  Promise.all(posts.map(post =>
+		  ReadableAPI.getComments(post.id)
+				.then(comments => post.comments = comments)
+				.then(() => post.commentCount = post.comments.length)
+				.then(() => post)
+	  )
+  ).then(dispatch(updatePosts(posts)))
 )
-
