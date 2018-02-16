@@ -22,11 +22,15 @@ class PostView extends Component {
                <p className="post-content">
                  { post.body }
                </p>
+               <p className="post-content">
+                 Comments here
+               </p>
                <p className="post-meta">
                  <span>{ new Date(post.timestamp).toDateString() }</span>
                  <span>({ post.voteScore } points)</span>
                  <span><a href="#">Downvote</a> - <a href="#">Upvote</a></span>
-                 <span><a href={"/post/" + post.id }>View Post</a></span>
+                 <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
+                 <span><a href={"/post/" + post.id + "/delete"}>Delete Post</a></span>
                </p>
              </article>)
          }
