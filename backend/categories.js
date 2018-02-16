@@ -6,11 +6,11 @@ let db = {}
 const defaultData = {
   categories: [
       {
-        name: 'frogs',
+        name: 'Frogs',
         path: 'frogs'
       },
       {
-        name: 'not-frogs',
+        name: 'Not Frogs',
         path: 'not-frogs'
       }
   ]
