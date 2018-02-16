@@ -3,6 +3,7 @@ import { withRouter } from 'react-router'
 
 class CategoryView extends Component {
 
+
   render () {
     return (
 
@@ -15,4 +16,4 @@ class CategoryView extends Component {
 
 }
 
-export default withRouter(CategoryView)
+export default CategoryView

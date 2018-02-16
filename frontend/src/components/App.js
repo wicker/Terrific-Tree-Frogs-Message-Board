@@ -27,6 +27,7 @@ class PostView extends Component {
 
 			<section id="content">
 				<article className="post">
+          <h2>{ this.props.match.params.post_id }</h2>
 					<h2>The Tree Frog</h2>
 					<p className="post-content">
 						<em>It is not the chambers of the heart that hold him<br />
@@ -58,24 +59,11 @@ class App extends Component {
           <Sidebar />
 					<div>
 						<Switch>
-							<Route path='/category/:category' render={({ history }) => (
-								<CategoryView />
-							)}/>
-							<Route path='/post' render={({ history }) => (
-								<PostView />
-
-							)}/>
-							<Route path='/add' render={({ history }) => (
-								<CreateEditView />
-
-							)}/>
-							<Route path='/post/:post_id/edit' render={({ history }) => (
-								<CreateEditView />
-
-							)}/>
-							<Route path="/" render={() => (
-								<PostIndexView />
-							)}/>
+							<Route exact path="/" component={PostIndexView} />
+							<Route path='/category/:category' component={CategoryView} />
+							<Route path='/post/:post_id' component={PostView} />
+							<Route path='/add' component={CreateEditView} />
+							<Route path='/post/:post_id/edit' component={CreateEditView} />
 						</Switch>
 					</div>
 
