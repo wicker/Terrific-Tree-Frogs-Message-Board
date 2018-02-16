@@ -36,3 +36,13 @@ export const voteOnPost = (postID, voteString) => dispatch =>
 export const deletePost = (postID) => dispatch =>
   ReadableAPI.deletePost(postID)
     .then(() => dispatch(getAllPosts()))
+
+export const addPost = (post) => dispatch =>
+  ReadableAPI.addPost(post)
+    .then(() => dispatch(getAllPosts()))
+
+export const editPost = (post) => dispatch =>
+  ReadableAPI.editPost(post)
+    .then(() => dispatch(getAllPosts()))
+
+

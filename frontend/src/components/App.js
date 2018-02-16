@@ -6,35 +6,17 @@ import Header from './Header.js'
 import PostIndexView from './PostIndexView.js'
 import CategoryView from './CategoryView.js'
 import PostView from './PostView.js'
-
-class CreateEditView extends Component {
-
-  render () {
-    return (
-
-			<section id="content">
-        <h1>CreateEdit</h1>
-      </section>
-
-    )
-  }
-
-
-}
+import AddPost from './AddPost.js'
+import EditPost from './EditPost.js'
 
 class NotFound404 extends Component {
-
   render () {
     return (
-
 			<section id="content">
-
-      <h2>There's nothing here!</h2>
+        <h2>There's nothing here!</h2>
       </section>
-
     )
   }
-
 }
 
 class App extends Component {
@@ -48,9 +30,9 @@ class App extends Component {
 						<Switch>
 							<Route exact path="/" component={PostIndexView} />
 							<Route path='/category/:category' component={CategoryView} />
+							<Route path='/post/:post_id/edit' component={EditPost} />
 							<Route path='/post/:post_id' component={PostView} />
-							<Route path='/add' component={CreateEditView} />
-							<Route path='/post/:post_id/edit' component={CreateEditView} />
+							<Route path='/add' component={AddPost} />
 						  <Route path="*" component={NotFound404} />
             </Switch>
 					</div>
