@@ -50,6 +50,21 @@ class PostView extends Component {
 
 }
 
+class NotFound404 extends Component {
+
+  render () {
+    return (
+
+			<section id="content">
+
+      <h2>There's nothing here!</h2>
+      </section>
+
+    )
+  }
+
+}
+
 class App extends Component {
   render() {
     return (
@@ -64,7 +79,8 @@ class App extends Component {
 							<Route path='/post/:post_id' component={PostView} />
 							<Route path='/add' component={CreateEditView} />
 							<Route path='/post/:post_id/edit' component={CreateEditView} />
-						</Switch>
+						  <Route path="*" component={NotFound404} />
+            </Switch>
 					</div>
 
         </div>
