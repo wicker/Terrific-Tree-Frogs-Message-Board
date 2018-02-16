@@ -18,7 +18,7 @@ function categories (state = {}, action) {
 function posts (state = {}, action) {
   switch (action.type) {
     case GET_ALL_POSTS:
-      return action.posts
+      return action.posts.filter(post => !post.deleted)
     default:
       return state
   }

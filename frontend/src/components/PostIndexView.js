@@ -14,7 +14,6 @@ class PostIndexView extends Component {
 
 			<section id="content">
         {Object.values(this.props.posts)
-          .filter(post => !post.deleted)
           .map(post =>
 
             <article className="post">
@@ -23,7 +22,10 @@ class PostIndexView extends Component {
                 { post.body }
               </p>
               <p className="post-meta">
-                { post.timestamp } ({ post.voteScore } points)- <a href="#">Downvote</a> - <a href="#">Upvote</a> - <a href="#">View Post</a>
+                <span>{ new Date(post.timestamp).toDateString() }</span>
+                <span>({ post.voteScore } points)</span>
+                <span><a href="#">Downvote</a> - <a href="#">Upvote</a></span>
+                <span><a href={"/post/" + post.id }>View Post</a></span>
               </p>
             </article>)
         }
