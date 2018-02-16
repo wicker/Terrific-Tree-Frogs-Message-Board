@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getAllPosts } from '../actions'
 
-class MainPage extends Component {
+class PostIndexView extends Component {
 
   componentWillMount () {
     this.props.updatePosts();
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
   updatePosts: () => dispatch(getAllPosts())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PostIndexView)

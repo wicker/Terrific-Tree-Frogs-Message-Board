@@ -3,21 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import Sidebar from './Sidebar.js'
 import Header from './Header.js'
-import MainPage from './MainPage.js'
-
-class CategoryView extends Component {
-
-  render () {
-    return (
-
-      <section id="content">
-        <h1>CategoryView</h1>
-      </section>
-
-    )
-  }
-
-}
+import PostIndexView from './PostIndexView.js'
+import CategoryView from './CategoryView.js'
 
 class CreateEditView extends Component {
 
@@ -71,19 +58,23 @@ class App extends Component {
           <Sidebar />
 					<div>
 						<Switch>
-							<Route path='/category' render={({ history }) => (
+							<Route path='/category/:category' render={({ history }) => (
 								<CategoryView />
 							)}/>
 							<Route path='/post' render={({ history }) => (
 								<PostView />
 
 							)}/>
-							<Route path='/create' render={({ history }) => (
+							<Route path='/add' render={({ history }) => (
+								<CreateEditView />
+
+							)}/>
+							<Route path='/post/:post_id/edit' render={({ history }) => (
 								<CreateEditView />
 
 							)}/>
 							<Route path="/" render={() => (
-								<MainPage />
+								<PostIndexView />
 							)}/>
 						</Switch>
 					</div>

@@ -12,7 +12,7 @@ class Sidebar extends Component {
     return (
       <aside id="sidebar">
           <ul className="add-post">
-            <li><a href="/create">Add a Post</a></li>
+            <li><a href="/add">Add a Post</a></li>
           </ul>
         <h1>Sort by</h1>
         <ul>
