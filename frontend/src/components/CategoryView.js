@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getAllPosts } from '../actions'
+import { getAllPosts, voteOnPost } from '../actions'
 
 class CategoryView extends Component {
 
@@ -13,11 +13,11 @@ class CategoryView extends Component {
 
        <section id="content">
          {Object.values(this.props.posts)
-           .filter(post => post.category == this.props.match.params.category)
+           .filter(post => post.category === this.props.match.params.category)
 
            .map(post =>
 
-             <article className="post">
+             <article className="post" key={ post.id }>
                <h2>{ post.title }</h2>
                <p className="post-content">
                  { post.body }
@@ -25,7 +25,8 @@ class CategoryView extends Component {
                <p className="post-meta">
                  <span>{ new Date(post.timestamp).toDateString() }</span>
                  <span>({ post.voteScore } points)</span>
-                 <span><a href="#">Downvote</a> - <a href="#">Upvote</a></span>
+                 <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
+                 <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
                  <span><a href={"/post/" + post.id }>View Post</a></span>
                </p>
              </article>)
@@ -41,7 +42,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updatePosts: () => dispatch(getAllPosts())
+  updatePosts: () => dispatch(getAllPosts()),
+  vote: (postID, voteString) =>
+    dispatch(voteOnPost(postID, voteString))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryView)

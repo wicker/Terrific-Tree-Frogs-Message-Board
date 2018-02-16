@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getAllPosts } from '../actions'
+import { getAllPosts, voteOnPost } from '../actions'
 
 class PostView extends Component {
 
@@ -13,11 +13,11 @@ class PostView extends Component {
 
        <section id="content">
          {Object.values(this.props.posts)
-           .filter(post => post.id == this.props.match.params.post_id)
+           .filter(post => post.id === this.props.match.params.post_id)
 
            .map(post =>
 
-             <article className="post">
+             <article className="post" key="{ post.id }">
                <h2>{ post.title }</h2>
                <p className="post-content">
                  { post.body }
@@ -28,7 +28,8 @@ class PostView extends Component {
                <p className="post-meta">
                  <span>{ new Date(post.timestamp).toDateString() }</span>
                  <span>({ post.voteScore } points)</span>
-                 <span><a href="#">Downvote</a> - <a href="#">Upvote</a></span>
+                 <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
+                 <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
                  <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
                  <span><a href={"/post/" + post.id + "/delete"}>Delete Post</a></span>
                </p>
@@ -45,7 +46,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updatePosts: () => dispatch(getAllPosts())
+  updatePosts: () => dispatch(getAllPosts()),
+  vote: (postID, voteString) =>
+    dispatch(voteOnPost(postID, voteString))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView)

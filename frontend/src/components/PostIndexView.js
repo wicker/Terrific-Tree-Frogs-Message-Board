@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllPosts } from '../actions'
+import { getAllPosts, voteOnPost } from '../actions'
 
 class PostIndexView extends Component {
 
@@ -16,7 +16,7 @@ class PostIndexView extends Component {
         {Object.values(this.props.posts)
           .map(post =>
 
-            <article className="post">
+            <article className="post" key={ post.id }>
               <h2>{ post.title }</h2>
               <p className="post-content">
                 { post.body }
@@ -24,7 +24,8 @@ class PostIndexView extends Component {
               <p className="post-meta">
                 <span>{ new Date(post.timestamp).toDateString() }</span>
                 <span>({ post.voteScore } points)</span>
-                <span><a href="#">Downvote</a> - <a href="#">Upvote</a></span>
+                <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
+                <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
                 <span><a href={"/post/" + post.id }>View Post</a></span>
               </p>
             </article>)
@@ -42,7 +43,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updatePosts: () => dispatch(getAllPosts())
+  updatePosts: () => dispatch(getAllPosts()),
+  vote: (postID, voteString) =>
+    dispatch(voteOnPost(postID, voteString))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostIndexView)

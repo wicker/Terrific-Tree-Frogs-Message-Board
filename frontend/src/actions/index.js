@@ -28,3 +28,7 @@ export const getAllPosts = () => dispatch =>
 	  )
   ).then(dispatch(updatePosts(posts)))
 )
+
+export const voteOnPost = (postID, voteString) => dispatch =>
+  ReadableAPI.voteOnAPost(postID, voteString)
+    .then(() => dispatch(getAllPosts()))
