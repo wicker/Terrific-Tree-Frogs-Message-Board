@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getAllPosts, voteOnPost } from '../actions'
+import { getAllPosts, voteOnPost, deletePost } from '../actions'
 
 class PostView extends Component {
 
@@ -31,7 +31,7 @@ class PostView extends Component {
                  <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
                  <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
                  <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
-                 <span><a href={"/post/" + post.id + "/delete"}>Delete Post</a></span>
+                 <button onClick={() => this.props.removePost(post.id)}>Delete</button>
                </p>
              </article>)
          }
@@ -48,7 +48,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   updatePosts: () => dispatch(getAllPosts()),
   vote: (postID, voteString) =>
-    dispatch(voteOnPost(postID, voteString))
+    dispatch(voteOnPost(postID, voteString)),
+  removePost: (postID) =>
+    dispatch(deletePost(postID))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView)

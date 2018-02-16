@@ -32,3 +32,7 @@ export const getAllPosts = () => dispatch =>
 export const voteOnPost = (postID, voteString) => dispatch =>
   ReadableAPI.voteOnAPost(postID, voteString)
     .then(() => dispatch(getAllPosts()))
+
+export const deletePost = (postID) => dispatch =>
+  ReadableAPI.deletePost(postID)
+    .then(() => dispatch(getAllPosts()))
