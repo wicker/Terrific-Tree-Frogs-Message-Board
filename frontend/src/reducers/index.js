@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux'
 import {
   GET_CATEGORIES,
-  GET_ALL_POSTS
+  GET_ALL_POSTS,
+  GET_POST_COMMENTS
 } from '../actions'
 
 /* Reducer specifies the shape of the store */
@@ -24,4 +25,13 @@ function posts (state = {}, action) {
   }
 }
 
-export default combineReducers({categories, posts})
+function comments (state = {}, action) {
+  switch (action.type) {
+    case GET_POST_COMMENTS:
+      return action.comments
+    default:
+      return state
+  }
+}
+
+export default combineReducers({categories, posts, comments})

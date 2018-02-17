@@ -2,6 +2,7 @@ import * as ReadableAPI from '../utils/ReadableAPI.js'
 
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
+export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 
 export const updateCategories = categories => ({
   type: GET_CATEGORIES,
@@ -20,13 +21,7 @@ export const updatePosts = posts => ({
 
 export const getAllPosts = () => dispatch =>
   ReadableAPI.getPosts().then(posts =>
-	  Promise.all(posts.map(post =>
-		  ReadableAPI.getComments(post.id)
-				.then(comments => post.comments = comments)
-				.then(() => post.commentCount = post.comments.length)
-				.then(() => post)
-	  )
-  ).then(dispatch(updatePosts(posts)))
+  dispatch(updatePosts(posts))
 )
 
 export const voteOnPost = (postID, voteString) => dispatch =>
@@ -44,5 +39,15 @@ export const addPost = (post) => dispatch =>
 export const editPost = (post) => dispatch =>
   ReadableAPI.editPost(post)
     .then(() => dispatch(getAllPosts()))
+
+export const updateComments = comments => ({
+  type: GET_POST_COMMENTS,
+  comments
+})
+
+export const getComments = (post_id) => dispatch =>
+  ReadableAPI.getComments(post_id).then(comments =>
+    dispatch(updateComments(comments))
+)
 
 
