@@ -1,12 +1,51 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllPosts, voteOnPost, deletePost, getComments, deleteComment } from '../actions'
+import { getAllPosts, voteOnPost, deletePost, getComments, deleteComment, addComment} from '../actions'
+const uuidv4 = require('uuid/v4');
 
 class PostView extends Component {
 
   componentWillMount () {
     this.props.updatePosts();
     this.props.updateComments(this.props.match.params.post_id);
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      body: '',
+      author: '',
+      parentId: this.props.match.params.post_id
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({[name]: value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const newComment = {
+      id: uuidv4(),
+      parentId: this.state.parentId,
+      timestamp: Date.now(),
+      body: this.state.body,
+      author: this.state.author,
+      voteScore: 0,
+      deleted: false
+    }
+
+    this.props.addComment(newComment);
+
   }
 
   render () {
@@ -37,22 +76,36 @@ class PostView extends Component {
                </div>)
            }
            <div><h2>Comments</h2></div>
-           {Object.values(this.props.comments)
-             .map(comment =>
-               <div key="{ comment.id }">
-                 <p className="post-content">
-                   { comment.body }
-                 </p>
-                 <p className="post-meta">
-                   <span>{ new Date(comment.timestamp).toDateString() }</span>
-                   <span>({ comment.author })</span>
-                   <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
-                 </p>
-              </div>
-            )
-          }
+           { this.props.comments.length !== 0
+             ? Object.values(this.props.comments)
+               .map(comment =>
+                 <div key="{ comment.id }">
+                   <p className="post-content">
+                     { comment.body }
+                   </p>
+                   <p className="post-meta">
+                     <span>{ new Date(comment.timestamp).toDateString() }</span>
+                     <span>({ comment.author })</span>
+                     <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
+                   </p>
+                </div>
+              )
+            : <div>There are no comments yet.</div>
+           }
 
+           <div><h2>Add a Comment</h2></div>
 
+           <form onSubmit={this.handleSubmit}>
+             <label>
+               Author:
+               <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+             </label>
+             <label>
+               Body:
+               <input name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
+             </label>
+             <input type="submit" value="Submit" />
+           </form>
 
         </article>
 
@@ -75,7 +128,9 @@ const mapDispatchToProps = dispatch => ({
   removePost: (postID) =>
     dispatch(deletePost(postID)),
   removeComment: (commentID) =>
-    dispatch(deleteComment(commentID))
+    dispatch(deleteComment(commentID)),
+  addComment: (newComment) =>
+    dispatch(addComment(newComment))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView)
