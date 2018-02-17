@@ -28,7 +28,7 @@ function posts (state = {}, action) {
 function comments (state = {}, action) {
   switch (action.type) {
     case GET_POST_COMMENTS:
-      return action.comments
+      return action.comments.filter(comment => !comment.deleted)
     default:
       return state
   }

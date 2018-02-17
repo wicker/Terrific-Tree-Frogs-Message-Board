@@ -28,16 +28,16 @@ export const voteOnPost = (postID, voteString) => dispatch =>
   ReadableAPI.voteOnAPost(postID, voteString)
     .then(() => dispatch(getAllPosts()))
 
-export const deletePost = (postID) => dispatch =>
-  ReadableAPI.deletePost(postID)
-    .then(() => dispatch(getAllPosts()))
-
-export const addPost = (post) => dispatch =>
-  ReadableAPI.addPost(post)
+export const addPost = (newPost) => dispatch =>
+  ReadableAPI.addPost(newPost)
     .then(() => dispatch(getAllPosts()))
 
 export const editPost = (post) => dispatch =>
   ReadableAPI.editPost(post)
+    .then(() => dispatch(getAllPosts()))
+
+export const deletePost = (postID) => dispatch =>
+  ReadableAPI.deletePost(postID)
     .then(() => dispatch(getAllPosts()))
 
 export const updateComments = comments => ({
@@ -45,9 +45,21 @@ export const updateComments = comments => ({
   comments
 })
 
-export const getComments = (post_id) => dispatch =>
-  ReadableAPI.getComments(post_id).then(comments =>
+export const getComments = (postID) => dispatch =>
+  ReadableAPI.getComments(postID).then(comments =>
     dispatch(updateComments(comments))
 )
+
+export const addComment = (newComment) => dispatch =>
+  ReadableAPI.addComment(newComment)
+    .then(() => dispatch(getComments()))
+
+export const editComment = (comment) => dispatch =>
+  ReadableAPI.editComment(comment)
+    .then(() => dispatch(getComments()))
+
+export const deleteComment = (commentID) => dispatch =>
+  ReadableAPI.deleteComment(commentID)
+    .then(() => dispatch(getComments()))
 
 

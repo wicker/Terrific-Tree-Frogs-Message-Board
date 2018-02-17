@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllPosts, voteOnPost, deletePost, getComments } from '../actions'
+import { getAllPosts, voteOnPost, deletePost, getComments, deleteComment } from '../actions'
 
 class PostView extends Component {
 
@@ -11,10 +11,12 @@ class PostView extends Component {
 
   render () {
 
-      return (
+    return (
 
-         <section id="content">
-           <article className="post">
+      <section id="content">
+
+        <article className="post">
+
            {Object.values(this.props.posts)
              .filter(post => post.id === this.props.match.params.post_id)
 
@@ -34,18 +36,28 @@ class PostView extends Component {
                  </p>
                </div>)
            }
+           <div><h2>Comments</h2></div>
            {Object.values(this.props.comments)
              .map(comment =>
-
+               <div key="{ comment.id }">
                  <p className="post-content">
                    { comment.body }
-                 </p>)
-           }
+                 </p>
+                 <p className="post-meta">
+                   <span>{ new Date(comment.timestamp).toDateString() }</span>
+                   <span>({ comment.author })</span>
+                   <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
+                 </p>
+              </div>
+            )
+          }
 
-          </article>
 
-         </section>
-      )
+
+        </article>
+
+      </section>
+    )
   }
 }
 
@@ -60,9 +72,10 @@ const mapDispatchToProps = dispatch => ({
   updateComments: (postID) => dispatch(getComments(postID)),
   vote: (postID, voteString) =>
     dispatch(voteOnPost(postID, voteString)),
-  removePost: (postID) => {
-    dispatch(deletePost(postID));
-  }
+  removePost: (postID) =>
+    dispatch(deletePost(postID)),
+  removeComment: (commentID) =>
+    dispatch(deleteComment(commentID))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView)
