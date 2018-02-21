@@ -11,8 +11,7 @@ export const updateCategories = categories => ({
 
 export const getCategories = () => dispatch =>
   ReadableAPI.getCategories().then(categories =>
-    dispatch(updateCategories(categories))
-)
+    dispatch(updateCategories(categories)))
 
 export const updatePosts = posts => ({
   type: GET_ALL_POSTS,
@@ -20,9 +19,12 @@ export const updatePosts = posts => ({
 })
 
 export const getAllPosts = () => dispatch =>
-  ReadableAPI.getPosts().then(posts =>
-  dispatch(updatePosts(posts))
-)
+  ReadableAPI.getPosts()
+    .then(posts => dispatch(updatePosts(posts)))
+
+export const getAPost = (postID) => dispatch =>
+  ReadableAPI.getPostByID(postID)
+    .then(post => dispatch(updatePosts(post)))
 
 export const voteOnPost = (postID, voteString) => dispatch =>
   ReadableAPI.voteOnAPost(postID, voteString)
@@ -47,8 +49,7 @@ export const updateComments = comments => ({
 
 export const getComments = (postID) => dispatch =>
   ReadableAPI.getComments(postID).then(comments =>
-    dispatch(updateComments(comments))
-)
+    dispatch(updateComments(comments)))
 
 export const addComment = (newComment) => dispatch =>
   ReadableAPI.addComment(newComment)
