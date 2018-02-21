@@ -51,10 +51,21 @@ class EditPost extends Component {
   }
 
   componentWillMount() {
-
-    this.props.updatePosts();
-    console.log(this.props.match.params.post_id,'update: ');
-    this.props.updatePost(this.props.match.params.post_id);
+    this.props.updatePosts()
+      .then(() =>
+        this.setState({
+          refPost: this.props.posts.filter(post => post.id === this.state.id),
+        })
+      ).then(() =>
+        this.setState({
+          title: this.state.refPost[0].title,
+          body: this.state.refPost[0].body,
+          category: this.state.refPost[0].category,
+          author: this.state.refPost[0].author,
+          voteScore: this.state.refPost[0].voteScore,
+          timestamp: this.state.refPost[0].timestamp
+        })
+      )
   }
 
   render () {
@@ -63,8 +74,6 @@ class EditPost extends Component {
        <section id="content">
 
          <h2>Edit Post</h2>
-
-         { console.log(this.state.posts) }
 
 					<form  onSubmit={this.handleSubmit}>
 						<label>
@@ -77,7 +86,7 @@ class EditPost extends Component {
 						</label>
 						<label>
 							Body:
-							<input  name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
+							<input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
 						</label>
 						<label>
 							Category:

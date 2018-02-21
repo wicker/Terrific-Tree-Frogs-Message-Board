@@ -40,14 +40,11 @@ export const voteOnAPost = (post_id, vote) =>
       })
   .then(data => data.json())
 
-export const editPost = (post_id, title, body) =>
-  fetch (`${api}/posts/${post_id}`,
+export const editPost = (post) =>
+  fetch (`${api}/posts/${post.id}`,
       { method: 'PUT',
         headers,
-        body: JSON.stringify({
-          title: title,
-          body: body
-        })
+        body: JSON.stringify(post)
       })
   .then(data => data.json())
 
