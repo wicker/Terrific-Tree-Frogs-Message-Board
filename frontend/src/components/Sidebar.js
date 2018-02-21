@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCategories } from '../actions'
+import { getCategories, updateSorting } from '../actions'
 
 class Sidebar extends Component {
 
   componentWillMount () {
     this.props.updateCats();
+    this.props.updateSortBy();
   }
 
   render() {
@@ -35,12 +36,14 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-   categories: state.categories
- })
+  sorting: state.sorting,
+  categories: state.categories
+})
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updateCats: () => dispatch(getCategories())
+  updateCats: () => dispatch(getCategories()),
+  updateSortBy: (sorting) => dispatch(updateSorting(sorting))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

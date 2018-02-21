@@ -14,6 +14,8 @@ class PostIndexView extends Component {
 
 			<section id="content">
         {Object.values(this.props.posts)
+          .sort(post => post.timestamp)
+          .reverse(post => post)
           .map(post =>
 
             <article className="post" key={ post.id }>
@@ -38,7 +40,8 @@ class PostIndexView extends Component {
 }
 
 const mapStateToProps = state => ({
-   posts: state.posts
+   posts: state.posts,
+   sortBy: state.sortBy
  })
 
 const mapDispatchToProps = dispatch => ({

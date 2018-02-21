@@ -3,6 +3,12 @@ import * as ReadableAPI from '../utils/ReadableAPI.js'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
+export const UPDATE_SORTING = 'UPDATE_SORTING'
+
+export const updateSorting = sorting => dispatch => ({
+  type: UPDATE_SORTING,
+  sorting
+})
 
 export const updateCategories = categories => ({
   type: GET_CATEGORIES,
