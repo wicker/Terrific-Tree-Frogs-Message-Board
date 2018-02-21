@@ -35,7 +35,7 @@ class EditComment extends Component {
 
     const editedComment = {
       id: this.state.id,
-      timestamp: this.state.timestamp,
+      timestamp: Date.now(),
       body: this.state.body,
       author: this.state.author,
 
@@ -48,7 +48,7 @@ class EditComment extends Component {
 
   componentWillMount() {
     this.props.updatePosts();
-    this.props.updateComments(this.props.match.params.comment_id)
+    this.props.updateComments(this.props.match.params.post_id)
       .then(() =>
         this.setState({
           refComment: this.props.comments.filter(comment => comment.id === this.state.id),
@@ -60,8 +60,6 @@ class EditComment extends Component {
           timestamp: this.state.refComment[0].timestamp
         })
       )
-    console.log(this.props.comments, this.props.match.params.comment_id)
-    console.log(this.state)
   }
 
   render () {

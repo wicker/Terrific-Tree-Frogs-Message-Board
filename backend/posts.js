@@ -18,7 +18,7 @@ const defaultData = {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
     title: 'Cat',
-    body: '<img src="http://localhost:3000/img/toad.png">',
+    body: 'Time spent with a cat is never wasted',
     author: 'thingone',
     category: 'not-frogs',
     voteScore: -5,

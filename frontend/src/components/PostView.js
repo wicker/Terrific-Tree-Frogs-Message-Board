@@ -60,7 +60,7 @@ class PostView extends Component {
              .filter(post => post.id === this.props.match.params.post_id)
 
              .map(post =>
-               <div key="{ post.id }">
+               <div key={ post.id }>
                  <h2>{ post.title }</h2>
                  <p className="post-content">
                    { post.body }
@@ -75,25 +75,26 @@ class PostView extends Component {
                  </p>
                </div>)
            }
-           <div><h2>Comments</h2></div>
-           { this.props.comments.length !== 0
-             ? Object.values(this.props.comments)
-               .map(comment =>
-                 <div key="{ comment.id }">
-                   <p className="post-content">
-                     { comment.body }
-                   </p>
-                   <p className="post-meta">
-                     <span>{ new Date(comment.timestamp).toDateString() }</span>
-                     <span>({ comment.author })</span>
-                     <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
-                     <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
-                   </p>
-                </div>
-              )
-            : <div>There are no comments yet.</div>
-           }
-
+           <div>
+             <h2>Comments</h2>
+             { this.props.comments.length !== 0
+               ? Object.values(this.props.comments)
+                 .map(comment =>
+                   <div key={ comment.id }>
+                     <p className="post-content">
+                       { comment.body }
+                     </p>
+                     <p className="post-meta">
+                       <span>{ new Date(comment.timestamp).toDateString() }</span>
+                       <span>({ comment.author })</span>
+                       <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
+                       <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
+                     </p>
+                  </div>
+                )
+              : <div>There are no comments yet.</div>
+             }
+           </div>
            <div><h2>Add a Comment</h2></div>
 
            <form onSubmit={this.handleSubmit}>
