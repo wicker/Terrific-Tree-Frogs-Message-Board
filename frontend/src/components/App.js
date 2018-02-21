@@ -8,6 +8,7 @@ import CategoryView from './CategoryView.js'
 import PostView from './PostView.js'
 import AddPost from './AddPost.js'
 import EditPost from './EditPost.js'
+import EditComment from './EditComment.js'
 
 class NotFound404 extends Component {
   render () {
@@ -31,6 +32,7 @@ class App extends Component {
 							<Route exact path="/" component={PostIndexView} />
 							<Route path='/category/:category' component={CategoryView} />
 							<Route path='/post/:post_id/edit' component={EditPost} />
+							<Route path='/post/:post_id/:comment_id/edit' component={EditComment} />
 							<Route path='/post/:post_id' component={PostView} />
 							<Route path='/add' component={AddPost} />
 						  <Route path="*" component={NotFound404} />

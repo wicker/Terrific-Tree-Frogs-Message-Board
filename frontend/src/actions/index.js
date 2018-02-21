@@ -10,8 +10,8 @@ export const updateCategories = categories => ({
 })
 
 export const getCategories = () => dispatch =>
-  ReadableAPI.getCategories().then(categories =>
-    dispatch(updateCategories(categories)))
+  ReadableAPI.getCategories()
+    .then(categories => dispatch(updateCategories(categories)))
 
 export const updatePosts = posts => ({
   type: GET_ALL_POSTS,
@@ -48,8 +48,8 @@ export const updateComments = comments => ({
 })
 
 export const getComments = (postID) => dispatch =>
-  ReadableAPI.getComments(postID).then(comments =>
-    dispatch(updateComments(comments)))
+  ReadableAPI.getComments(postID)
+    .then(comments => dispatch(updateComments(comments)))
 
 export const addComment = (newComment) => dispatch =>
   ReadableAPI.addComment(newComment)

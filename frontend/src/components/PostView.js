@@ -86,6 +86,7 @@ class PostView extends Component {
                    <p className="post-meta">
                      <span>{ new Date(comment.timestamp).toDateString() }</span>
                      <span>({ comment.author })</span>
+                     <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
                      <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
                    </p>
                 </div>
