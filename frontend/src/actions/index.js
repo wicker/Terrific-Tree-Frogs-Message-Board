@@ -5,7 +5,7 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const UPDATE_SORTING = 'UPDATE_SORTING'
 
-export const updateSorting = sorting => dispatch => ({
+export const updateSorting = sorting => ({
   type: UPDATE_SORTING,
   sorting
 })

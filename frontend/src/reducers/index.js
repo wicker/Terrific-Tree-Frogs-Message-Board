@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux'
+
 import {
   UPDATE_SORTING,
   GET_CATEGORIES,
@@ -6,14 +7,7 @@ import {
   GET_POST_COMMENTS
 } from '../actions'
 
-/* Reducer specifies the shape of the store */
-
-const initialSortingState = {
-  sortby: 'date',
-  reverse: false
-}
-
-function sorting (state = initialSortingState, action) {
+function sorting (state = 'date' , action) {
   switch (action.type) {
     case UPDATE_SORTING:
       return action.sorting
@@ -22,11 +16,14 @@ function sorting (state = initialSortingState, action) {
   }
 }
 
-
-function categories (state = {}, action) {
+function categories (state = {categories: []}, action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      return action.categories
+      return {
+        ...state,
+        name: action.categories.name,
+        path: action.categories.path
+      }
     default:
       return state
   }

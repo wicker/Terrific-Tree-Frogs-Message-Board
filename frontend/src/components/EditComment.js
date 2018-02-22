@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { getAllPosts, getAPost, getComments, editComment } from '../actions'
 
@@ -63,26 +64,30 @@ class EditComment extends Component {
   }
 
   render () {
-    return (
+    if (this.state.redirect) {
+      return (<Redirect to={'"/post/'+this.state.parentId+'"'} />)
+    } else {
+      return (
 
-       <section id="content">
+         <section id="content">
 
-         <h2>Edit Comment</h2>
+           <h2>Edit Comment</h2>
 
-					<form  onSubmit={this.handleSubmit}>
-						<label>
-							Author:
-							<input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-						</label>
-						<label>
-							Body:
-							<input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-						</label>
-						<input  type="submit" value="Submit" />
-					</form>
+            <form  onSubmit={this.handleSubmit}>
+              <label>
+                Author:
+                <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+              </label>
+              <label>
+                Body:
+                <input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
+              </label>
+              <input  type="submit" value="Submit" />
+            </form>
 
-       </section>
-    )
+         </section>
+      )
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { getAllPosts, voteOnPost, deletePost, getComments, deleteComment, addComment} from '../actions'
 const uuidv4 = require('uuid/v4');
@@ -16,7 +17,8 @@ class PostView extends Component {
       title: '',
       body: '',
       author: '',
-      parentId: this.props.match.params.post_id
+      parentId: this.props.match.params.post_id,
+      redirect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,75 +46,88 @@ class PostView extends Component {
       deleted: false
     }
 
-    this.props.addComment(newComment);
+    this.props.addComment(newComment)
+  }
 
+  removeAPost(post_id) {
+    this.setState({redirect: true});
+    this.props.removePost(post_id);
   }
 
   render () {
+    if (this.state.redirect) {
+      return (<Redirect to="/" />)
+    } else {
 
-    return (
+      return (
 
-      <section id="content">
+        <section id="content">
 
-        <article className="post">
+          <article className="post">
 
-           {Object.values(this.props.posts)
-             .filter(post => post.id === this.props.match.params.post_id)
+             {Object.values(this.props.posts)
+               .filter(post => post.id === this.props.match.params.post_id)
 
-             .map(post =>
-               <div key={ post.id }>
-                 <h2>{ post.title }</h2>
-                 <p className="post-content">
-                   { post.body }
-                 </p>
-                 <p className="post-meta">
-                   <span>{ new Date(post.timestamp).toDateString() }</span>
-                   <span>({ post.voteScore } points)</span>
-                   <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
-                   <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
-                   <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
-                   <button onClick={() => this.props.removePost(post.id)}>Delete</button>
-                 </p>
-               </div>)
-           }
-           <div>
-             <h2>Comments</h2>
-             { this.props.comments.length !== 0
-               ? Object.values(this.props.comments)
-                 .map(comment =>
-                   <div key={ comment.id }>
-                     <p className="post-content">
-                       { comment.body }
-                     </p>
-                     <p className="post-meta">
-                       <span>{ new Date(comment.timestamp).toDateString() }</span>
-                       <span>({ comment.author })</span>
-                       <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
-                       <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
-                     </p>
-                  </div>
-                )
-              : <div>There are no comments yet.</div>
+               .map(post =>
+                 <div key={ post.id } className="post-wrapper">
+                   <h2>{ post.title }</h2>
+                   <p className="post-content">
+                     { post.body }
+                   </p>
+                   <p className="post-meta">
+                     <span>{ new Date(post.timestamp).toDateString() }</span>
+                     <span>({ post.voteScore } points)</span>
+                     <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
+                     <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
+                     <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
+                     <button onClick={() => this.removeAPost(post.id)}>Delete</button>
+                   </p>
+                 </div>)
              }
-           </div>
-           <div><h2>Add a Comment</h2></div>
+             <div className="post-wrapper">
+               <h2>Comments</h2>
+               { this.props.comments.length !== 0
+                 ? Object.values(this.props.comments)
+                   .map(comment =>
+                     <div key={ comment.id }>
+                       <p className="post-content">
+                         { comment.body }
+                       </p>
+                       <p className="post-meta">
+                         <span>{ new Date(comment.timestamp).toDateString() }</span>
+                         <span>({ comment.author })</span>
+                         <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
+                         <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
+                       </p>
+                    </div>
+                  )
+                : <div className="post-content">There are no comments yet.</div>
+               }
+             </div>
 
-           <form onSubmit={this.handleSubmit}>
-             <label>
-               Author:
-               <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-             </label>
-             <label>
-               Body:
-               <input name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
-             </label>
-             <input type="submit" value="Submit" />
-           </form>
+             <div className="post-wrapper">
 
-        </article>
+               <h2>Add a Comment</h2>
 
-      </section>
-    )
+               <form className="add-comment" onSubmit={this.handleSubmit}>
+                 <label>
+                   Author:
+                   <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+                 </label><br /><br />
+                 <label>
+                   Body:
+                   <input name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
+                 </label><br /><br />
+                 <input type="submit" value="Submit" />
+               </form>
+
+             </div>
+
+          </article>
+
+        </section>
+      )
+    }
   }
 }
 

@@ -6,7 +6,6 @@ class Sidebar extends Component {
 
   componentWillMount () {
     this.props.updateCats();
-    this.props.updateSortBy();
   }
 
   render() {
@@ -17,12 +16,13 @@ class Sidebar extends Component {
           </ul>
         <h1>Sort by</h1>
         <ul>
-          <li><a href="/">Date</a></li>
-          <li><a href="/">Votes</a></li>
+          <li><button onClick={() => this.props.updateSortBy('date')}>Date</button></li>
+          <li><button onClick={() => this.props.updateSortBy('voteScore')}>Votes</button></li>
         </ul>
         <h1>Categories</h1>
         <ul>
 
+        <li key='all'><a href={"/"}>All Posts</a></li>
         {Object.values(this.props.categories)
           .map(category =>
             <li key={ category.path }><a href={"/category/" + category.path }>{ category.name }</a></li>
@@ -36,8 +36,7 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-  sorting: state.sorting,
-  categories: state.categories
+  categories: state.categories.categories
 })
 
 const mapDispatchToProps = dispatch => ({

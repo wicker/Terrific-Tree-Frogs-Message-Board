@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { getAllPosts, getAPost, editPost } from '../actions'
 
@@ -69,37 +70,41 @@ class EditPost extends Component {
   }
 
   render () {
-    return (
+    if (this.state.redirect) {
+      return (<Redirect to={'"/post/'+this.state.id+'"'} />)
+    } else {
+      return (
 
-       <section id="content">
+         <section id="content">
 
-         <h2>Edit Post</h2>
+           <h2>Edit Post</h2>
 
-					<form  onSubmit={this.handleSubmit}>
-						<label>
-							Title:
-							<input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-						</label>
-						<label>
-							Author:
-							<input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-						</label>
-						<label>
-							Body:
-							<input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-						</label>
-						<label>
-							Category:
-							<select  name="category" value={this.state.category} onChange={this.handleChange}>
-								<option  value="frogs">Frogs</option>
-								<option  value="not-frogs">Not Frogs</option>
-							</select>
-						</label>
-						<input  type="submit" value="Submit" />
-					</form>
+            <form  onSubmit={this.handleSubmit}>
+              <label>
+                Title:
+                <input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
+              </label>
+              <label>
+                Author:
+                <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+              </label>
+              <label>
+                Body:
+                <input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
+              </label>
+              <label>
+                Category:
+                <select  name="category" value={this.state.category} onChange={this.handleChange}>
+                  <option  value="frogs">Frogs</option>
+                  <option  value="not-frogs">Not Frogs</option>
+                </select>
+              </label>
+              <input  type="submit" value="Submit" />
+            </form>
 
-       </section>
-    )
+         </section>
+      )
+    }
   }
 }
 
