@@ -14,6 +14,17 @@ const defaultData = {
     deleted: false,
     commentCount: 0
   },
+  "1048472284981709289478368": {
+    id: '1048472284981709289478368',
+    timestamp: 1468479767191,
+    title: 'Night Frogs',
+    body: 'Croak a song of twilight',
+    author: 'frog aficionado',
+    category: 'frogs',
+    voteScore: 12,
+    deleted: false,
+    commentCount: 0
+  },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
