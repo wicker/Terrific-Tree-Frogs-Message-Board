@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getAllPosts, voteOnPost } from '../actions'
+import SortBy from './SortBy.js'
 
 class PostIndexView extends Component {
 
@@ -13,6 +14,7 @@ class PostIndexView extends Component {
     return (
 
 			<section id="content">
+        <SortBy />
         {Object.values(this.props.posts)
           .sort(post => {
             if (this.props.sorting === 'date') {

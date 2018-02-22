@@ -3,6 +3,15 @@ body {
   font-size: 16px;
 }
 
+.sortbar {
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+h3 {
+  display: inline;
+  margin-right: 10px;
+}
 .wrapper {
   max-width: 960px;
   margin: 0 auto;

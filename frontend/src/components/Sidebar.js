@@ -25,11 +25,6 @@ class Sidebar extends Component {
           }
         </ul>
 
-        <h1>Sort by</h1>
-        <ul>
-          <li><button onClick={() => this.props.updateSortBy('date')}>Date</button></li>
-          <li><button onClick={() => this.props.updateSortBy('voteScore')}>Votes</button></li>
-        </ul>
       </aside>
     )
   }

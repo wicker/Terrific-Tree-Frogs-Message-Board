@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getAllPosts, voteOnPost } from '../actions'
+import SortBy from './SortBy.js'
 
 class CategoryView extends Component {
 
@@ -12,6 +13,9 @@ class CategoryView extends Component {
     return (
 
        <section id="content">
+
+         <SortBy />
+
          {Object.values(this.props.posts)
            .filter(post => post.category === this.props.match.params.category)
 
@@ -37,8 +41,8 @@ class CategoryView extends Component {
 }
 
 const mapStateToProps = state => ({
-   posts: state.posts
- })
+  posts: state.posts
+})
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
