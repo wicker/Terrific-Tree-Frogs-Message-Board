@@ -75,7 +75,8 @@ class PostView extends Component {
                .filter(post => post.id === this.props.match.params.post_id)
 
                .map(post =>
-                 <div key={ post.id } className="post-wrapper">
+                 <div key={ post.id }>
+                  <div className="post-wrapper">
                   <h2>{ post.title }</h2>
                   <p className="post-content">
                     { post.body }
@@ -96,34 +97,42 @@ class PostView extends Component {
                     </span>
                     <span className="post-author">
                       { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
+                      Comments: { post.commentCount }
                     </span>
                   </p>
-                </div>)
-             }
-             <div className="post-wrapper">
-               <h2>Comments</h2>
-               { this.props.comments.length !== 0
-                 ? Object.values(this.props.comments)
-                   .map(comment =>
-                     <div key={ comment.id }>
-                       <p className="post-content">
-                         { comment.body }
-                       </p>
-                       <p className="post-meta">
-                         <span className="post-link">
-                           <a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit</a> &nbsp;
-                           <button onClick={() => this.props.removeComment(comment)}>Delete</button>
-                         </span>
-                         <span className="post-author">
-                           Comment posted { new Date(comment.timestamp).toLocaleDateString('en-US') } by { comment.author }<br />
-                         </span>
-                       </p>
-                    </div>
-                  )
-                : <div className="post-content">There are no comments yet.</div>
-               }
-             </div>
+                </div>
 
+                <div className="post-wrapper">
+                  <h2>Comments</h2>
+
+                { post.commentCount === 0
+                  ? <div className="post-content">There are no comments yet.</div>
+                  : <div>
+                      { Object.assign(post.comments)
+                        .map(comment =>
+                          <div key={ comment.id }>
+                            <p className="post-content">
+                              { comment.body }
+                            </p>
+                            <p className="post-meta">
+                              <span className="post-link">
+                                <a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit</a> &nbsp;
+                                <button onClick={() => this.props.removeComment(comment)}>Delete</button>
+                              </span>
+                              <span className="post-author">
+                                Comment posted { new Date(comment.timestamp).toLocaleDateString('en-US') } by { comment.author }<br />
+                              </span>
+                            </p>
+                          </div>)
+                      }
+                    </div>
+                }
+
+                </div>
+                </div>
+
+                ) /* end map */
+             }
              <div className="post-wrapper">
 
                <h2>Add a Comment</h2>
@@ -151,8 +160,7 @@ class PostView extends Component {
 }
 
 const mapStateToProps = state => ({
-   posts: state.posts,
-   comments: state.comments
+   posts: state.posts
  })
 
 const mapDispatchToProps = dispatch => ({

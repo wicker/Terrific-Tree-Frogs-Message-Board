@@ -25,8 +25,14 @@ export const updatePosts = posts => ({
 })
 
 export const getAllPosts = () => dispatch =>
-  ReadableAPI.getPosts()
-    .then(posts => dispatch(updatePosts(posts)))
+  ReadableAPI.getPosts().then(posts =>
+		Promise.all(posts.map(post =>
+					ReadableAPI.getComments(post.id)
+						.then(comments => post.comments = comments)
+						.then(() => post.commentCount = post.comments.length)
+						.then(() => post))
+		).then(posts => dispatch(updatePosts(posts)))
+)
 
 export const getAPost = (postID) => dispatch =>
   ReadableAPI.getPostByID(postID)
@@ -56,6 +62,7 @@ export const updateComments = comments => ({
 export const getComments = (postID) => dispatch =>
   ReadableAPI.getComments(postID)
     .then(comments => dispatch(updateComments(comments)))
+    .then(() => dispatch(getAllPosts()))
 
 export const addComment = (newComment) => dispatch =>
   ReadableAPI.addComment(newComment)

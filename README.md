@@ -15,7 +15,7 @@ Install and start the API backend server.
 ```
 cd backend
 npm install
-node server
+npm start
 ```
 
 Install project dependencies and start the app.
