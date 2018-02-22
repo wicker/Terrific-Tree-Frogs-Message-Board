@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getAllPosts, voteOnPost } from '../actions'
+import { getAllPosts, voteOnPost, deletePost } from '../actions'
 import SortBy from './SortBy.js'
 
 class CategoryView extends Component {
@@ -40,7 +40,12 @@ class CategoryView extends Component {
                   </button>
                 </span>
                 <span className="post-link">
-                  <a href={"/post/" + post.id }>View Post</a>
+                  <a href={"/post/" + post.id + "/edit"}>Edit</a> &nbsp;
+                  <button onClick={() => this.props.removePost(post.id)}>Delete</button>
+                  { post.commentCount === 1
+                    ? <a href={"/post/" + post.id }>{ post.commentCount } comment</a>
+                    : <a href={"/post/" + post.id }>{ post.commentCount } comments</a>
+                  }
                 </span>
                 <span className="post-author">
                   { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
@@ -62,7 +67,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   updatePosts: () => dispatch(getAllPosts()),
   vote: (postID, voteString) =>
-    dispatch(voteOnPost(postID, voteString))
+    dispatch(voteOnPost(postID, voteString)),
+  removePost: (postID) =>
+    dispatch(deletePost(postID)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryView)
