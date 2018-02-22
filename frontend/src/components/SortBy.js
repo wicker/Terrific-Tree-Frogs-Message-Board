@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCategories, updateSorting } from '../actions'
+import { updateSorting } from '../actions'
 
 class SortBy extends Component {
 
