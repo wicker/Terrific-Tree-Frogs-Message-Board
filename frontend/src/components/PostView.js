@@ -76,19 +76,29 @@ class PostView extends Component {
 
                .map(post =>
                  <div key={ post.id } className="post-wrapper">
-                   <h2>{ post.title }</h2>
-                   <p className="post-content">
-                     { post.body }
-                   </p>
-                   <p className="post-meta">
-                     <span>{ new Date(post.timestamp).toDateString() }</span>
-                     <span>({ post.voteScore } points)</span>
-                     <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
-                     <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
-                     <span><a href={"/post/" + post.id + "/edit"}>Edit Post</a></span>
-                     <button onClick={() => this.removeAPost(post.id)}>Delete</button>
-                   </p>
-                 </div>)
+                  <h2>{ post.title }</h2>
+                  <p className="post-content">
+                    { post.body }
+                  </p>
+                  <p className="post-meta">
+                    <span className="post-votes">
+                      <button className="votebutton downvote"
+                        onClick={() => this.props.vote(post.id, 'downVote')}>
+                      </button>
+                      <span>{ post.voteScore }</span>
+                      <button className="votebutton upvote"
+                        onClick={() => this.props.vote(post.id, 'upVote')}>
+                      </button>
+                    </span>
+                    <span className="post-link">
+                      <a href={"/post/" + post.id + "/edit"}>Edit</a> &nbsp;
+                      <button onClick={() => this.removeAPost(post.id)}>Delete</button>
+                    </span>
+                    <span className="post-author">
+                      { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
+                    </span>
+                  </p>
+                </div>)
              }
              <div className="post-wrapper">
                <h2>Comments</h2>
@@ -100,10 +110,13 @@ class PostView extends Component {
                          { comment.body }
                        </p>
                        <p className="post-meta">
-                         <span>{ new Date(comment.timestamp).toDateString() }</span>
-                         <span>({ comment.author })</span>
-                         <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
-                         <button onClick={() => this.props.removeComment(comment)}>Delete</button>
+                         <span className="post-link">
+                           <a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit</a> &nbsp;
+                           <button onClick={() => this.props.removeComment(comment)}>Delete</button>
+                         </span>
+                         <span className="post-author">
+                           Comment posted { new Date(comment.timestamp).toLocaleDateString('en-US') } by { comment.author }<br />
+                         </span>
                        </p>
                     </div>
                   )

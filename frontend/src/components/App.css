@@ -57,11 +57,11 @@ h3 {
 
 #sidebar ul li a {
   display: block;
-  color: #000;
+  color: #fff;
 }
 
 #sidebar ul li a:hover {
-  background-color: #fff;
+  background-color: #400080;
 }
 
 #content {
@@ -77,8 +77,92 @@ h3 {
   border-radius: 10px;
 }
 
+.post h2 {
+  background-color: #400080;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  font-size: 2em;
+  border-radius: 10px 10px 0 0;
+  color: #ebe5f2;
+}
+
+.post h2 a, .post h2 a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+.post img {
+  max-width: 100%;
+}
+
+.post-meta {
+  background-color: #8c66b2;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 0 0 10px 10px ;
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.post-meta a, .post-meta a:visited {
+  color: #fff;
+  font-size: 18px;
+}
+
 .post-wrapper {
   margin-bottom: 30px;
+}
+
+.post-link {
+  float:right;
+  margin-right: 5%;
+}
+
+.post-votes {
+  float:left;
+  margin-left: 5%;
+}
+
+.post-author {
+  background-color: #8c66b2;
+  padding: 0px;
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.votebutton {
+  font-weight: bold;
+  min-height: 29px;
+  min-width: 29px;
+  padding: 0;
+  margin: 0;
+  vertical-align:middle;
+  background-color: #8c66b2;
+  border: none;
+}
+
+button {
+  padding: 10px;
+  background-color: #8c66b2;
+  border: 0;
+  font-size: 18px;
+  text-decoration: underline;
+  color: #fff;
+  font-weight: bold;
+}
+
+.upvote {
+  background-image: url(/img/upvote.png);
+  background-size: cover;
+  margin-right: 20px;
+}
+
+.downvote {
+  background-image: url(/img/downvote.png);
+  background-size: cover;
+  margin-left: 20px;
 }
 
 .post-content, .add-comment {
@@ -89,28 +173,6 @@ h3 {
 
 .add-comment {
   border-radius: 0 0 20px 20px;
-}
-
-.post h2 {
-  background-color: #400080;
-  padding: 10px;
-  margin: 10px 0 0 0;
-  font-size: 2em;
-  border-radius: 10px 10px 0 0;
-  color: #ebe5f2;
-}
-
-.post img {
-  max-width: 100%;
-}
-
-.post-meta {
-  background-color: #8c66b2;
-  line-height: 50px;
-  font: 30px;
-  border-radius: 0 0 10px 10px ;
-  margin: 0;
-  padding: 10px;
 }
 
 .App {

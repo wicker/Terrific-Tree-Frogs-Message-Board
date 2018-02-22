@@ -62,14 +62,17 @@ class AddPost extends Component {
                Title:
                <input name="title" type="text" value={this.state.title} onChange={this.handleChange} />
              </label>
+             <br /><br />
              <label>
                Author:
                <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
              </label>
+             <br /><br />
              <label>
                Body:
                <input name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
              </label>
+             <br /><br />
              <label>
                Category:
                <select name="category" value={this.state.category} onChange={this.handleChange}>
@@ -77,6 +80,7 @@ class AddPost extends Component {
                  <option value="not-frogs">Not Frogs</option>
                </select>
              </label>
+             <br /><br />
              <input type="submit" value="Submit" />
            </form>
 

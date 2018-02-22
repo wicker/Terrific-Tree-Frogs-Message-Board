@@ -21,19 +21,29 @@ class PostIndexView extends Component {
               return post_a.timestamp - post_b.timestamp
              else
               return post_a.voteScore - post_b.voteScore
-          }).map(post =>
+          }).reverse(post => post).map(post =>
 
             <article className="post" key={ post.id }>
-              <h2>{ post.title }</h2>
+              <h2><a href={"/post/" + post.id }>{ post.title }</a></h2>
               <p className="post-content">
                 { post.body }
               </p>
               <p className="post-meta">
-                <span>{ new Date(post.timestamp).toDateString() }</span>
-                <span>({ post.voteScore } points)</span>
-                <button onClick={() => this.props.vote(post.id, 'downVote')}>Downvote</button>
-                <button onClick={() => this.props.vote(post.id, 'upVote')}>Upvote</button>
-                <span><a href={"/post/" + post.id }>View Post</a></span>
+                <span className="post-votes">
+                  <button className="votebutton downvote"
+                    onClick={() => this.props.vote(post.id, 'downVote')}>
+                  </button>
+                  <span>{ post.voteScore }</span>
+                  <button className="votebutton upvote"
+                    onClick={() => this.props.vote(post.id, 'upVote')}>
+                  </button>
+                </span>
+                <span className="post-link">
+                  <a href={"/post/" + post.id }>View Post</a>
+                </span>
+                <span className="post-author">
+                  { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
+                </span>
               </p>
             </article>)
         }
