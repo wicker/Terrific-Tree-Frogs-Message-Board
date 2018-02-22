@@ -35,6 +35,9 @@ function posts (state = {}, action) {
 }
 
 function comments (state = {}, action) {
+
+  console.log(action.comments);
+
   switch (action.type) {
     case GET_POST_COMMENTS:
       return action.comments.filter(comment => !comment.deleted)

@@ -59,14 +59,14 @@ export const getComments = (postID) => dispatch =>
 
 export const addComment = (newComment) => dispatch =>
   ReadableAPI.addComment(newComment)
-    .then(() => dispatch(getComments()))
+    .then(() => dispatch(getComments(newComment.parentId)))
 
 export const editComment = (comment) => dispatch =>
   ReadableAPI.editComment(comment)
-    .then(() => dispatch(getComments()))
+    .then(() => dispatch(getComments(comment.parentId)))
 
-export const deleteComment = (commentID) => dispatch =>
-  ReadableAPI.deleteComment(commentID)
-    .then(() => dispatch(getComments()))
+export const deleteComment = (comment) => dispatch =>
+  ReadableAPI.deleteComment(comment.id)
+    .then(() => dispatch(getComments(comment.parentId)))
 
 

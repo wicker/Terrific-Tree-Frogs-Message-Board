@@ -14,7 +14,6 @@ class PostView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
       body: '',
       author: '',
       parentId: this.props.match.params.post_id,
@@ -46,7 +45,14 @@ class PostView extends Component {
       deleted: false
     }
 
-    this.props.addComment(newComment)
+    this.setState({
+      body: '',
+      author: '',
+      redirect: false
+    });
+
+    this.props.addComment(newComment);
+
   }
 
   removeAPost(post_id) {
@@ -97,7 +103,7 @@ class PostView extends Component {
                          <span>{ new Date(comment.timestamp).toDateString() }</span>
                          <span>({ comment.author })</span>
                          <span><a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit Comment</a></span>
-                         <button onClick={() => this.props.removeComment(comment.id)}>Delete</button>
+                         <button onClick={() => this.props.removeComment(comment)}>Delete</button>
                        </p>
                     </div>
                   )
@@ -144,8 +150,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(voteOnPost(postID, voteString)),
   removePost: (postID) =>
     dispatch(deletePost(postID)),
-  removeComment: (commentID) =>
-    dispatch(deleteComment(commentID)),
+  removeComment: (comment) =>
+    dispatch(deleteComment(comment)),
   addComment: (newComment) =>
     dispatch(addComment(newComment))
 })

@@ -39,7 +39,7 @@ class EditComment extends Component {
       timestamp: Date.now(),
       body: this.state.body,
       author: this.state.author,
-
+      parentId: this.state.parentId
     }
 
     this.props.editComment(editedComment);
