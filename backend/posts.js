@@ -14,25 +14,25 @@ const defaultData = {
     deleted: false,
     commentCount: 0
   },
-  "1048472284981709289478368": {
-    id: '1048472284981709289478368',
-    timestamp: 1468479767191,
+  "9xf0y6ziyjabvozdd253nd": {
+    id: '9xf0y6ziyjabvozdd253nd',
+    timestamp: 1519269415880,
     title: 'Night Frogs',
     body: 'Croak a song of twilight',
     author: 'frog aficionado',
     category: 'frogs',
-    voteScore: 12,
+    voteScore: -3,
     deleted: false,
     commentCount: 0
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1468479767190,
+    timestamp: 1368479767190,
     title: 'Cat',
     body: 'Time spent with a cat is never wasted',
     author: 'thingone',
     category: 'not-frogs',
-    voteScore: -5,
+    voteScore: 12,
     deleted: false,
     commentCount: 0
   }

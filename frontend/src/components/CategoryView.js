@@ -15,11 +15,14 @@ class CategoryView extends Component {
        <section id="content">
 
          <SortBy />
-
          {Object.values(this.props.posts)
            .filter(post => post.category === this.props.match.params.category)
-
-           .map(post =>
+           .sort((post_a, post_b) => {
+            if (this.props.sorting === 'date')
+              return post_a.timestamp - post_b.timestamp
+             else
+              return post_a.voteScore - post_b.voteScore
+           }).map(post =>
 
              <article className="post" key={ post.id }>
                <h2>{ post.title }</h2>
@@ -41,7 +44,8 @@ class CategoryView extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  sorting: state.sorting
 })
 
 const mapDispatchToProps = dispatch => ({

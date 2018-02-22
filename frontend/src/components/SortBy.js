@@ -16,9 +16,13 @@ class SortBy extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  sorting: state.sorting
+})
+
 const mapDispatchToProps = dispatch => ({
   dispatch,
   updateSortBy: (sorting) => dispatch(updateSorting(sorting))
 })
 
-export default connect(mapDispatchToProps)(SortBy)
+export default connect(mapStateToProps, mapDispatchToProps)(SortBy)

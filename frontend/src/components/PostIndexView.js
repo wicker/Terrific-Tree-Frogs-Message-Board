@@ -16,14 +16,11 @@ class PostIndexView extends Component {
 			<section id="content">
         <SortBy />
         {Object.values(this.props.posts)
-          .sort(post => {
-            if (this.props.sorting === 'date') {
-              console.log('sort by date');
-              return post.timestamp
-            } else {
-              console.log('sort by vote');
-              return post.voteScore
-            }
+          .sort((post_a, post_b) => {
+            if (this.props.sorting === 'date')
+              return post_a.timestamp - post_b.timestamp
+             else
+              return post_a.voteScore - post_b.voteScore
           }).map(post =>
 
             <article className="post" key={ post.id }>
