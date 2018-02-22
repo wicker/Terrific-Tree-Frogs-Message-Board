@@ -71,7 +71,7 @@ class EditPost extends Component {
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to={'"/post/'+this.state.id+'"'} />)
+      return (<Redirect to={'/' + this.state.category + '/' + this.state.id} />)
     } else {
       return (
 

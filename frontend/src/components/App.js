@@ -30,11 +30,11 @@ class App extends Component {
 					<div>
 						<Switch>
 							<Route exact path="/" component={PostIndexView} />
-							<Route path='/category/:category' component={CategoryView} />
-							<Route path='/post/:post_id/edit' component={EditPost} />
-							<Route path='/post/:post_id/:comment_id/edit' component={EditComment} />
-							<Route path='/post/:post_id' component={PostView} />
-							<Route path='/add' component={AddPost} />
+							<Route exact path='/:category' component={CategoryView} />
+							<Route exact path='/:category/:post_id/edit' component={EditPost} />
+							<Route exact path='/:category/:post_id/:comment_id/edit' component={EditComment} />
+							<Route exact path='/:category/:post_id' component={PostView} />
+							<Route exact path='/add' component={AddPost} />
 						  <Route path="*" component={NotFound404} />
             </Switch>
 					</div>

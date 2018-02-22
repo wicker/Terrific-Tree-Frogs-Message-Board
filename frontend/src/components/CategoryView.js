@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getAllPosts, voteOnPost, deletePost } from '../actions'
+import { getCategories, getAllPosts, voteOnPost, deletePost } from '../actions'
 import SortBy from './SortBy.js'
 
 class CategoryView extends Component {
 
   componentWillMount () {
+    this.props.updateCats();
     this.props.updatePosts();
+  }
+
+  isLegitCategory () {
+    console.log('cats: ',this.props.categories);
+    const vals = Object.values(this.props.categories)
+    console.log('vals: ',vals);
+    console.log('includes: ',vals.includes(this.props.match.params.category));
   }
 
   render () {
@@ -14,7 +22,23 @@ class CategoryView extends Component {
 
        <section id="content">
 
-         <SortBy />
+         { this.isLegitCategory()}
+
+         {Object.values(this.props.categories)
+           .filter(category => category.path === this.props.match.params.category)
+           .map(category => {
+             return(category.path === 'frogs'
+               ? <div>
+                   <h2>Posts in <u>{category.name}</u></h2>
+                   <SortBy />
+                 </div>
+               : <div><h2>test</h2></div>
+             )}
+
+           )
+         }
+
+
          {Object.values(this.props.posts)
            .filter(post => post.category === this.props.match.params.category)
            .sort((post_a, post_b) => {
@@ -25,7 +49,7 @@ class CategoryView extends Component {
            }).reverse(post => post).map(post =>
 
             <article className="post" key={ post.id }>
-              <h2><a href={"/post/" + post.id }>{ post.title }</a></h2>
+              <h2><a href={"/" + post.category + "/" + post.id }>{ post.title }</a></h2>
               <p className="post-content">
                 { post.body }
               </p>
@@ -40,11 +64,11 @@ class CategoryView extends Component {
                   </button>
                 </span>
                 <span className="post-link">
-                  <a href={"/post/" + post.id + "/edit"}>Edit</a> &nbsp;
+                  <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
                   <button onClick={() => this.props.removePost(post.id)}>Delete</button>
                   { post.commentCount === 1
-                    ? <a href={"/post/" + post.id }>{ post.commentCount } comment</a>
-                    : <a href={"/post/" + post.id }>{ post.commentCount } comments</a>
+                    ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
+                    : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
                   }
                 </span>
                 <span className="post-author">
@@ -60,7 +84,8 @@ class CategoryView extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  sorting: state.sorting
+  sorting: state.sorting,
+  categories: state.categories
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -70,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(voteOnPost(postID, voteString)),
   removePost: (postID) =>
     dispatch(deletePost(postID)),
+  updateCats: () => dispatch(getCategories()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryView)

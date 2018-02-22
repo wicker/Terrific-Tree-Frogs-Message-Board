@@ -65,7 +65,7 @@ class EditComment extends Component {
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to={'"/post/'+this.state.parentId+'"'} />)
+      return (<Redirect to={'/' + this.props.match.params.category + '/' + this.state.parentId} />)
     } else {
       return (
 

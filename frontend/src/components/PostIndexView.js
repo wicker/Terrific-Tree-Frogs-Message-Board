@@ -14,6 +14,7 @@ class PostIndexView extends Component {
     return (
 
 			<section id="content">
+        <h2>All Posts</h2>
         <SortBy />
         {Object.values(this.props.posts)
           .sort((post_a, post_b) => {
@@ -24,7 +25,7 @@ class PostIndexView extends Component {
           }).reverse(post => post).map(post =>
 
             <article className="post" key={ post.id }>
-              <h2><a href={"/post/" + post.id }>{ post.title }</a></h2>
+              <h2><a href={"/" + post.category + "/" + post.id }>{ post.title }</a></h2>
               <p className="post-content">
                 { post.body }
               </p>
@@ -39,11 +40,11 @@ class PostIndexView extends Component {
                   </button>
                 </span>
                 <span className="post-link">
-                  <a href={"/post/" + post.id + "/edit"}>Edit</a> &nbsp;
+                  <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
                   <button onClick={() => this.props.removePost(post.id)}>Delete</button>
                   { post.commentCount === 1
-                    ? <a href={"/post/" + post.id }>{ post.commentCount } comment</a>
-                    : <a href={"/post/" + post.id }>{ post.commentCount } comments</a>
+                    ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
+                    : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
                   }
                 </span>
                 <span className="post-author">

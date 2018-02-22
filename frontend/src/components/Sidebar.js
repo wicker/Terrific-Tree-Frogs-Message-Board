@@ -20,7 +20,7 @@ class Sidebar extends Component {
           <li key='all'><a href={"/"}>All Posts</a></li>
           {Object.values(this.props.categories)
             .map(category =>
-              <li key={ category.path }><a href={"/category/" + category.path }>{ category.name }</a></li>
+              <li key={ category.path }><a href={"/" + category.path }>{ category.name }</a></li>
             )
           }
         </ul>
