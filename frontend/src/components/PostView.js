@@ -122,7 +122,7 @@ class PostView extends Component {
                  </label><br /><br />
                  <label>
                    Body:
-                   <input name="body" type="text" value={this.state.postbody} onChange={this.handleChange} />
+                   <input name="body" type="text" value={this.state.body} onChange={this.handleChange} />
                  </label><br /><br />
                  <input type="submit" value="Submit" />
                </form>
