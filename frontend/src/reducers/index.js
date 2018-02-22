@@ -16,14 +16,10 @@ function sorting (state = 'date' , action) {
   }
 }
 
-function categories (state = {categories: []}, action) {
+function categories (state = {}, action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      return {
-        ...state,
-        name: action.categories.name,
-        path: action.categories.path
-      }
+      return action.categories
     default:
       return state
   }
