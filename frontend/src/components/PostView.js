@@ -97,15 +97,19 @@ class PostView extends Component {
                           onClick={() => this.props.vote(post.id, 'upVote')}>
                         </button>
                       </span>
+                      <div className="right">
                         <a href={"/post/" + post.id + "/edit"}>Edit</a> &nbsp;
                         <button onClick={() => this.removeAPost(post.id)}>Delete</button>
-                        Comments: { post.commentCount }
+                      </div>
+                      { post.commentCount === 1
+                              ? <div>{ post.commentCount } Comment</div>
+                              : <div>{ post.commentCount } Comments</div>
+                      }
                     </p>
                   </div>
 
                   <div className="post-wrapper">
-                    <h2>Comments</h2>
-
+                  <h2>Comments</h2>
                   { post.commentCount === 0
                     ? <div className="post-content">There are no comments yet.</div>
                     : <div>
@@ -120,6 +124,7 @@ class PostView extends Component {
                                   <a href={"/post/" + comment.parentId + "/" + comment.id + "/edit"}>Edit</a> &nbsp;
                                   <button onClick={() => this.props.removeComment(comment)}>Delete</button>
                                 </span>
+                                &nbsp;
                                 <span className="post-author">
                                   Comment posted { new Date(comment.timestamp).toLocaleDateString('en-US') } by { comment.author }<br />
                                 </span>
@@ -138,15 +143,17 @@ class PostView extends Component {
                <h2>Add a Comment</h2>
 
                <form className="add-comment" onSubmit={this.handleSubmit}>
-                 <label>
-                   Author:
-                   <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-                 </label>
-                 <label>
-                   Body:
-                   <input name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-                 </label>
-                 <input type="submit" value="Submit" />
+                 <div className="centered">
+                   <label>
+                     <span className="label-box">Author:</span>
+                     <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+                   </label>
+                   <label>
+                     <span className="label-box">Body:</span>
+                     <input name="body" type="text" value={this.state.body} onChange={this.handleChange} />
+                   </label>
+                   <input type="submit" value="Submit" />
+                  </div>
                </form>
 
              </div>

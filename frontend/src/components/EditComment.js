@@ -73,17 +73,17 @@ class EditComment extends Component {
 
            <h2>Edit Comment</h2>
 
-            <form  onSubmit={this.handleSubmit}>
-              <label>
-                Author:
-                <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-              </label>
-              <label>
-                Body:
-                <input  name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-              </label>
-              <input  type="submit" value="Submit" />
-            </form>
+             <form className="centered" onSubmit={this.handleSubmit}>
+               <label>
+                 <span className="label-box">Author:</span>
+                 <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+               </label>
+               <label>
+                 <span className="label-box">Body:</span><br />
+                 <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body}    onChange={this.handleChange} />
+               </label>
+               <input type="submit" value="Submit" />
+             </form>
 
          </section>
       )
