@@ -84,3 +84,12 @@ export const editComment = (comment) =>
       })
   .then(data => data.json())
 
+export const voteOnAComment = (comment_id, vote) =>
+  fetch (`${api}/comments/${comment_id}`,
+      { method: 'POST',
+        headers,
+        body: JSON.stringify({ option: vote })
+      })
+  .then(data => data.json())
+
+
