@@ -26,6 +26,11 @@ class PostIndexView extends Component {
 
             <article className="post" key={ post.id }>
               <h2><a href={"/" + post.category + "/" + post.id }>{ post.title }</a></h2>
+              <p className="post-meta">
+                <span className="post-author">
+                  Posted on { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }
+                </span>
+              </p>
               <p className="post-content">
                 { post.body }
               </p>
@@ -39,17 +44,13 @@ class PostIndexView extends Component {
                     onClick={() => this.props.vote(post.id, 'upVote')}>
                   </button>
                 </span>
-                <span className="post-link">
-                  <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
-                  <button onClick={() => this.props.removePost(post.id)}>Delete</button>
-                  { post.commentCount === 1
-                    ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
-                    : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
-                  }
-                </span>
-                <span className="post-author">
-                  { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
-                </span>
+                <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
+                <button onClick={() => this.props.removePost(post.id)}>Delete</button>
+                &nbsp; &nbsp;
+                { post.commentCount === 1
+                  ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
+                  : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
+                }
               </p>
             </article>)
         }

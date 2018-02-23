@@ -22,22 +22,15 @@ class CategoryView extends Component {
 
        <section id="content">
 
-         { this.isLegitCategory()}
-
          {Object.values(this.props.categories)
            .filter(category => category.path === this.props.match.params.category)
-           .map(category => {
-             return(category.path === 'frogs'
-               ? <div>
-                   <h2>Posts in <u>{category.name}</u></h2>
-                   <SortBy />
-                 </div>
-               : <div><h2>test</h2></div>
-             )}
-
+           .map(category =>
+               <div>
+                 <h2>Posts in <u>{category.name}</u></h2>
+                 <SortBy />
+                </div>
            )
          }
-
 
          {Object.values(this.props.posts)
            .filter(post => post.category === this.props.match.params.category)
@@ -50,6 +43,11 @@ class CategoryView extends Component {
 
             <article className="post" key={ post.id }>
               <h2><a href={"/" + post.category + "/" + post.id }>{ post.title }</a></h2>
+              <p className="post-meta">
+                <span className="post-author">
+                  Posted on { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }
+                </span>
+              </p>
               <p className="post-content">
                 { post.body }
               </p>
@@ -63,17 +61,13 @@ class CategoryView extends Component {
                     onClick={() => this.props.vote(post.id, 'upVote')}>
                   </button>
                 </span>
-                <span className="post-link">
-                  <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
-                  <button onClick={() => this.props.removePost(post.id)}>Delete</button>
-                  { post.commentCount === 1
-                    ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
-                    : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
-                  }
-                </span>
-                <span className="post-author">
-                  { new Date(post.timestamp).toLocaleDateString('en-US') } by { post.author }<br />
-                </span>
+                <a href={"/" + post.category + "/" + post.id + "/edit"}>Edit</a> &nbsp;
+                <button onClick={() => this.props.removePost(post.id)}>Delete</button>
+                &nbsp; &nbsp;
+                { post.commentCount === 1
+                  ? <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comment</a>
+                  : <a href={"/" + post.category + "/" + post.id }>{ post.commentCount } comments</a>
+                }
               </p>
             </article>)
          }

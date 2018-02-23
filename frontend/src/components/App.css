@@ -99,7 +99,6 @@ h3 {
   background-color: #8c66b2;
   line-height: 50px;
   font-size: 20px;
-  border-radius: 0 0 10px 10px ;
   margin: 0;
   padding: 10px;
   font-weight: bold;
@@ -130,6 +129,12 @@ h3 {
   margin: 0;
   font-weight: bold;
   font-size: 16px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 0;
 }
 
 .votebutton {
