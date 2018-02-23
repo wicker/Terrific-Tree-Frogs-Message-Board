@@ -8,7 +8,7 @@ const defaultData = {
     id: '894tuq4ut84ut8v4t8wun89g',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1468166872634,
-    body: 'Hi there! I am a COMMENT.',
+    body: 'Frogs are amazing.',
     author: 'thingtwo',
     voteScore: 6,
     deleted: false,
@@ -18,9 +18,20 @@ const defaultData = {
     id: '8tu4bsun805n8un48ve89',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1469479767190,
-    body: 'Comments. Are. Cool.',
+    body: 'Frog. Comments. Are. The. Best.',
     author: 'thingone',
-    voteScore: -5,
+    voteScore: 3,
+    deleted: false,
+    parentDeleted: false
+  }
+,
+  "8tu2345n805n8un48ve89": {
+    id: '8tu2345n805n8un48ve89',
+    parentId: "6ni6ok3ym7mf1p33lnez",
+    timestamp: 1469479768222,
+    body: 'cats rule',
+    author: 'thingone',
+    voteScore: -9,
     deleted: false,
     parentDeleted: false
   }

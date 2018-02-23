@@ -62,6 +62,9 @@ class PostView extends Component {
   }
 
   render () {
+
+    const deletedPost = null;
+
     if (this.state.redirect) {
       return (<Redirect to="/" />)
     } else {
@@ -74,10 +77,9 @@ class PostView extends Component {
 
              {Object.values(this.props.posts)
                .filter(post => post.id === this.props.match.params.post_id)
-
-               .map(post =>
-
-                   <div key={ post.id }>
+                  .map(post =>
+                  <div key={ post.id }>
+                      {this.deletedPost = false }
                     <div className="post-wrapper">
                     <h2>{ post.title }</h2>
                     <p className="post-meta">
@@ -148,28 +150,33 @@ class PostView extends Component {
 
                   </div>
                   </div>
-                ) /* end map */
+               ) /* end map */
              }
-             <div className="post-wrapper">
 
-               <h2>Add a Comment</h2>
 
-               <form className="add-comment" onSubmit={this.handleSubmit}>
-                 <div className="centered">
-                   <label>
-                     <span className="label-box">Author:</span>
-                     <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-                   </label>
-                   <label>
-                     <span className="label-box">Body:</span>
-                     <input name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-                   </label>
-                   <input type="submit" value="Submit" />
-                  </div>
-               </form>
+                { this.deletedPost === undefined
+                ? null
+                : <div className="post-wrapper">
 
-             </div>
+                  <h2>Add a Comment</h2>
 
+                  <form className="add-comment" onSubmit={this.handleSubmit}>
+                    <div className="centered">
+                      <label>
+                        <span className="label-box">Author:</span>
+                        <input name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+                      </label>
+                      <label>
+                        <span className="label-box">Body:</span>
+                        <input name="body" type="text" value={this.state.body} onChange={this.handleChange} />
+                      </label>
+                      <input type="submit" value="Submit" />
+                     </div>
+                  </form>
+
+                </div>
+
+            }
           </article>
 
         </section>
