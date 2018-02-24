@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { getAllPosts, getAPost, editPost } from '../actions'
+import { connect } from 'react-redux';
+import { getAllPosts, getAPost, editPost } from '../actions';
 
 class EditPost extends Component {
 
@@ -44,7 +44,7 @@ class EditPost extends Component {
       author: this.state.author,
       category: this.state.category,
       voteScore: this.state.voteScore
-    }
+    };
 
     this.props.editPost(editedPost);
 
@@ -66,57 +66,57 @@ class EditPost extends Component {
           voteScore: this.state.refPost[0].voteScore,
           timestamp: this.state.refPost[0].timestamp
         })
-      )
+      );
   }
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to={'/' + this.state.category + '/' + this.state.id} />)
+      return (<Redirect to={'/' + this.state.category + '/' + this.state.id} />);
     } else {
       return (
 
-         <section id="content">
+        <section id="content">
 
-           <h2>Edit Post</h2>
+          <h2>Edit Post</h2>
 
-            <form className="centered" onSubmit={this.handleSubmit}>
-              <label>
-                <span className="label-box">Title:</span>
-                <input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-              </label>
-              <label>
-                <span className="label-box">Author:</span>
-                <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-              </label>
-              <label>
-                <span className="label-box">Category:</span>
-                <select  name="category" value={this.state.category} onChange={this.handleChange}>
-                  <option  value="frogs">Frogs</option>
-                  <option  value="not-frogs">Not Frogs</option>
-                </select>
-              </label>
-              <label>
-                <span className="label-box">Body:</span><br />
-                <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body} onChange={this.handleChange} />
-              </label>
-              <input type="submit" value="Submit" />
-            </form>
+          <form className="centered" onSubmit={this.handleSubmit}>
+            <label>
+              <span className="label-box">Title:</span>
+              <input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
+            </label>
+            <label>
+              <span className="label-box">Author:</span>
+              <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+            </label>
+            <label>
+              <span className="label-box">Category:</span>
+              <select  name="category" value={this.state.category} onChange={this.handleChange}>
+                <option  value="frogs">Frogs</option>
+                <option  value="not-frogs">Not Frogs</option>
+              </select>
+            </label>
+            <label>
+              <span className="label-box">Body:</span><br />
+              <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
 
-         </section>
-      )
+        </section>
+      );
     }
   }
 }
 
 const mapStateToProps = state => ({
   posts: state.posts
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
   updatePosts: () => dispatch(getAllPosts()),
   updatePost: (postID) => dispatch(getAPost(postID)),
   editPost: (editedPost) => dispatch(editPost(editedPost))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditPost)
+export default connect(mapStateToProps, mapDispatchToProps)(EditPost);

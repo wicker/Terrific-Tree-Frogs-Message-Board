@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { addPost } from '../actions'
+import { addPost } from '../actions';
 const uuidv4 = require('uuid/v4');
 
 class AddPost extends Component {
@@ -40,7 +40,7 @@ class AddPost extends Component {
       category: this.state.category,
       voteScore: 0,
       deleted: false
-    }
+    };
 
     this.props.addPost(newPost);
 
@@ -50,50 +50,50 @@ class AddPost extends Component {
   render () {
 
     if (this.state.redirect) {
-      return (<Redirect to="/" />)
+      return (<Redirect to="/" />);
     } else {
       return (
-         <section id="content">
+        <section id="content">
 
-           <h2>Add Post</h2>
+          <h2>Add Post</h2>
 
-					 <form className="centered" onSubmit={this.handleSubmit}>
-						 <label>
-							 <span className="label-box">Title:</span>
-							 <input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-						 </label>
-						 <label>
-							 <span className="label-box">Author:</span>
-							 <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-						 </label>
-						 <label>
-							 <span className="label-box">Category:</span>
-							 <select  name="category" value={this.state.category} onChange={this.handleChange}>
-								 <option  value="frogs">Frogs</option>
-								 <option  value="not-frogs">Not Frogs</option>
-							 </select>
-						 </label>
-						 <label>
-							 <span className="label-box">Body:</span><br />
-							 <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body}    onChange={this.handleChange} />
-						 </label>
-						 <input type="submit" value="Submit" />
-					 </form>
+          <form className="centered" onSubmit={this.handleSubmit}>
+            <label>
+              <span className="label-box">Title:</span>
+              <input  name="title" type="text" value={this.state.title} onChange={this.handleChange} />
+            </label>
+            <label>
+              <span className="label-box">Author:</span>
+              <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+            </label>
+            <label>
+              <span className="label-box">Category:</span>
+              <select  name="category" value={this.state.category} onChange={this.handleChange}>
+                <option  value="frogs">Frogs</option>
+                <option  value="not-frogs">Not Frogs</option>
+              </select>
+            </label>
+            <label>
+              <span className="label-box">Body:</span><br />
+              <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body}  onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
 
-         </section>
-      )
+        </section>
+      );
     }
   }
 }
 
 const mapStateToProps = state => ({
-   categories: state.categories
- })
+  categories: state.categories
+});
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
   addPost: (newPost) =>
     dispatch(addPost(newPost))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPost)
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

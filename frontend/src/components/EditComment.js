@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { getAllPosts, getAPost, getComments, editComment } from '../actions'
+import { connect } from 'react-redux';
+import { getAllPosts, getAPost, getComments, editComment } from '../actions';
 
 class EditComment extends Component {
 
@@ -40,7 +40,7 @@ class EditComment extends Component {
       body: this.state.body,
       author: this.state.author,
       parentId: this.state.parentId
-    }
+    };
 
     this.props.editComment(editedComment);
 
@@ -60,33 +60,33 @@ class EditComment extends Component {
           author: this.state.refComment[0].author,
           timestamp: this.state.refComment[0].timestamp
         })
-      )
+      );
   }
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to={'/' + this.props.match.params.category + '/' + this.state.parentId} />)
+      return (<Redirect to={'/' + this.props.match.params.category + '/' + this.state.parentId} />);
     } else {
       return (
 
-         <section id="content">
+        <section id="content">
 
-           <h2>Edit Comment</h2>
+          <h2>Edit Comment</h2>
 
-             <form className="centered" onSubmit={this.handleSubmit}>
-               <label>
-                 <span className="label-box">Author:</span>
-                 <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
-               </label>
-               <label>
-                 <span className="label-box">Body:</span><br />
-                 <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body}    onChange={this.handleChange} />
-               </label>
-               <input type="submit" value="Submit" />
-             </form>
+          <form className="centered" onSubmit={this.handleSubmit}>
+            <label>
+              <span className="label-box">Author:</span>
+              <input  name="author" type="text" value={this.state.author} onChange={this.handleChange} />
+            </label>
+            <label>
+              <span className="label-box">Body:</span><br />
+              <textarea className="large-input" maxlength="180" name="body" type="text" value={this.state.body}  onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
 
-         </section>
-      )
+        </section>
+      );
     }
   }
 }
@@ -94,7 +94,7 @@ class EditComment extends Component {
 const mapStateToProps = state => ({
   posts: state.posts,
   comments: state.comments
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
@@ -102,6 +102,6 @@ const mapDispatchToProps = dispatch => ({
   updateComments: (postID) => dispatch(getComments(postID)),
   updatePost: (postID) => dispatch(getAPost(postID)),
   editComment: (editedComment) => dispatch(editComment(editedComment))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditComment)
+export default connect(mapStateToProps, mapDispatchToProps)(EditComment);

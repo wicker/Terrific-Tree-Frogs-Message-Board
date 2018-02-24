@@ -8,8 +8,8 @@ class Header extends Component {
           <a href="/">Terrific Tree Frogs Message Board</a>
         </h1>
       </header>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;
