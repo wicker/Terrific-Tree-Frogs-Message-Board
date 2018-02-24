@@ -3,20 +3,58 @@ body {
   font-size: 16px;
 }
 
-.sortbar {
-  margin-top: 25px;
-  margin-bottom: 40px;
-}
-
 h3 {
   display: inline;
   margin: 10px 10px 0 0;
 
 }
+
+/* Overall layout wrappers */
+
+#content {
+  width: 70%;
+  float: right;
+  margin: 20px 0 0 0;
+}
+
 .wrapper {
   max-width: 960px;
   margin: 0 auto;
 }
+
+.sortbar {
+  margin: 25px 0 40px;
+}
+
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+
+.App-header {
+  background-color: #400080;
+  height: 150px;
+  margin: 0;
+  color: #ebe5f2;
+  line-height: 150px;
+  overflow: hidden;
+}
+
+.App-title {
+  font-size: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.App-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Sidebar */
 
 #sidebar {
   margin: 20px 0 0 0;
@@ -65,11 +103,7 @@ h3 {
   background-color: #400080;
 }
 
-#content {
-  width: 70%;
-  float: right;
-  margin: 20px 0 0 0;
-}
+/* Post */
 
 .post {
   padding: 0;
@@ -87,7 +121,8 @@ h3 {
   color: #ebe5f2;
 }
 
-.post h2 a, .post h2 a:visited {
+.post h2 a, 
+.post h2 a:visited {
   color: #fff;
   text-decoration: none;
 }
@@ -105,7 +140,8 @@ h3 {
   font-weight: bold;
 }
 
-.post-meta a, .post-meta a:visited {
+.post-meta a, 
+.post-meta a:visited {
   color: #fff;
   font-size: 18px;
 }
@@ -115,21 +151,33 @@ h3 {
 }
 
 .post-link {
-  float:right;
+  float: right;
 }
 
 .post-votes {
-  float:left;
+  float: left;
   margin-left: 5%;
 }
 
 .post-author {
   background-color: #8c66b2;
-  padding: 0px;
+  padding: 0;
   margin: 0;
   font-weight: bold;
   font-size: 16px;
 }
+
+.post-content, .add-comment {
+  margin: 0;
+  padding: 20px;
+  background-color: #b299cc;
+}
+
+.add-comment {
+  border-radius: 0 0 20px 20px;
+}
+
+/* Input forms */
 
 label {
   display: block;
@@ -151,27 +199,20 @@ label {
   font-size: 14px;
 }
 
-.centered {
-  width: 350px;
-  margin: 0 auto;
-
-}
-
-.right {
-  float: right;
-}
 input {
   font-family: Verdana, sans-serif;
   font-size: 14px;
 }
 
-.votebutton {
+/* Buttons */
+
+.vote-button {
   font-weight: bold;
   min-height: 29px;
   min-width: 29px;
   padding: 0;
   margin: 0;
-  vertical-align:middle;
+  vertical-align: middle;
   background-color: #8c66b2;
   border: none;
 }
@@ -198,52 +239,15 @@ button {
   margin-left: 20px;
 }
 
-.post-content, .add-comment {
-  margin: 0;
-  padding: 20px;
-  background-color: #b299cc;
+/* Presentational rules */
+
+.centered {
+  width: 350px;
+  margin: 0 auto;
 }
 
-.add-comment {
-  border-radius: 0 0 20px 20px;
+.right {
+  float: right;
 }
 
-.App {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #400080;
-  height: 150px;
-  margin: 0;
-  color: #ebe5f2;
-  line-height: 150px;
-  overflow: hidden;
-}
-
-.App-title {
-  font-size: 3em;
-  margin: 0;
-  padding: 0;
-}
-
-.App-title a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

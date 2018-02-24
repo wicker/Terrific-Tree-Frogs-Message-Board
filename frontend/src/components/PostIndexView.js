@@ -36,11 +36,11 @@ class PostIndexView extends Component {
               </p>
               <p className="post-meta">
                 <span className="post-votes">
-                  <button className="votebutton downvote"
+                  <button className="vote-button downvote"
                     onClick={() => this.props.vote(post.id, 'downVote')}>
                   </button>
                   <span>{ post.voteScore }</span>
-                  <button className="votebutton upvote"
+                  <button className="vote-button upvote"
                     onClick={() => this.props.vote(post.id, 'upVote')}>
                   </button>
                 </span>

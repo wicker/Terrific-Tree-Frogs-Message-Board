@@ -89,11 +89,11 @@ class PostView extends Component {
                     </p>
                     <p className="post-meta">
                       <span className="post-votes">
-                        <button className="votebutton downvote"
+                        <button className="vote-button downvote"
                           onClick={() => this.props.votePost(post.id, 'downVote')}>
                         </button>
                         <span>{ post.voteScore }</span>
-                        <button className="votebutton upvote"
+                        <button className="vote-button upvote"
                           onClick={() => this.props.votePost(post.id, 'upVote')}>
                         </button>
                       </span>
@@ -126,11 +126,11 @@ class PostView extends Component {
                               </p>
                               <p className="post-meta">
                                 <span className="post-votes">
-                                  <button className="votebutton downvote"
+                                  <button className="vote-button downvote"
                                     onClick={() => this.props.voteComment(comment.id, 'downVote')}>
                                   </button>
                                   { comment.voteScore }
-                                  <button className="votebutton upvote"
+                                  <button className="vote-button upvote"
                                     onClick={() => this.props.voteComment(comment.id, 'upVote')}>
                                   </button>
                                 </span>
