@@ -167,7 +167,9 @@ h3 {
   font-size: 16px;
 }
 
-.post-content, .add-comment {
+.post-content, 
+.add-comment,
+.comment-content {
   margin: 0;
   padding: 20px;
   background-color: #b299cc;
@@ -175,6 +177,22 @@ h3 {
 
 .add-comment {
   border-radius: 0 0 20px 20px;
+}
+
+.comment-meta {
+  background-color: #8c66b2;
+  line-height: 50px;
+  font-size: 20px;
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+  border-top: 7px solid #400080;
+}
+
+.comment-meta a, 
+.comment-meta a:visited {
+  color: #fff;
+  font-size: 18px;
 }
 
 /* Input forms */

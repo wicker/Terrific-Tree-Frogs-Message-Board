@@ -114,14 +114,15 @@ class PostView extends Component {
                       ? <div className="post-content">There are no comments yet.</div>
                       : <div>
                         { Object.assign(post.comments)
+                          .reverse(comment => comment)
                           .map(comment =>
                             <div key={ comment.id }>
-                              <p className="post-meta">
+                              <p className="comment-meta">
                                 <span className="post-author">
                     Comment posted { new Date(comment.timestamp).toLocaleDateString('en-US') } by { comment.author }<br />
                                 </span>
                               </p>
-                              <p className="post-content">
+                              <p className="comment-content">
                                 { comment.body }
                               </p>
                               <p className="post-meta">
