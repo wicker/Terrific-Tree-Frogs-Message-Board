@@ -5,12 +5,12 @@ let db = {}
 const defaultData = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
+    timestamp: 1368479767190,
     title: 'The Tree Frog',
     body: "It is not the chambers of the heart that hold him",
     author: 'foobear',
     category: 'frogs',
-    voteScore: 2,
+    voteScore: 5,
     deleted: false,
     commentCount: 0
   },
@@ -21,18 +21,18 @@ const defaultData = {
     body: 'Croak a song of twilight',
     author: 'frog aficionado',
     category: 'frogs',
-    voteScore: -3,
+    voteScore: 2,
     deleted: false,
     commentCount: 0
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1368479767190,
+    timestamp: 1467166872634,
     title: 'Cat',
     body: 'Time spent with a cat is never wasted',
     author: 'thingone',
     category: 'not-frogs',
-    voteScore: 12,
+    voteScore: -4,
     deleted: false,
     commentCount: 0
   }
