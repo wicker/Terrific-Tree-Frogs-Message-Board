@@ -5,7 +5,7 @@ import {
   GET_CATEGORIES,
   GET_ALL_POSTS,
   GET_POST_COMMENTS
-} from '../actions';
+} from '../actions/types';
 
 function sorting (state = 'date' , action) {
   switch (action.type) {
