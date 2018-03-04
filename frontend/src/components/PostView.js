@@ -7,9 +7,16 @@ const uuidv4 = require('uuid/v4');
 
 class PostView extends Component {
 
+  state = {
+    isLoaded: false,
+    is404: false
+  }
+
   componentWillMount () {
     this.props.updatePosts();
-    this.props.updateComments(this.props.match.params.post_id);
+    this.props.updateComments(this.props.match.params.post_id)
+      .then(() => this.setState({ isLoaded: true }))
+      .then(() => this.checkPostExistence())
   }
 
   constructor(props) {
@@ -61,10 +68,25 @@ class PostView extends Component {
     this.props.removePost(post_id);
   }
 
+  checkPostExistence() {
+    const postResult = Object.values(this.props.posts)
+      .filter(post => post.id === this.props.match.params.post_id);
+
+    if (postResult.length === 0) {
+      this.setState({ is404: true });
+    } else {
+      this.setState({ is404: false });
+    }
+  }
+
   render () {
 
     if (this.state.redirect) {
-      return (<Redirect to="/" />);
+      return (<Redirect to="/" />)
+    } else if (!this.state.isLoaded) {
+      return ('')
+    } else if (this.state.is404) {
+      return (<Redirect to="/404" />)
     } else {
 
       return (
@@ -97,13 +119,13 @@ class PostView extends Component {
                           onClick={() => this.props.votePost(post.id, 'upVote')}>
                         </button>
                       </span>
-                      <div className="right">
+                      <span className="right">
                         <a href={'/post/' + post.id + '/edit'}>Edit</a> &nbsp;
                         <button onClick={() => this.removeAPost(post.id)}>Delete</button>
-                      </div>
+                      </span>
                       { post.commentCount === 1
-                        ? <div>{ post.commentCount } Comment</div>
-                        : <div>{ post.commentCount } Comments</div>
+                        ? <span>{ post.commentCount } Comment</span>
+                        : <span>{ post.commentCount } Comments</span>
                       }
                     </p>
                   </div>
@@ -114,7 +136,6 @@ class PostView extends Component {
                       ? <div className="post-content">There are no comments yet.</div>
                       : <div>
                         { Object.assign(post.comments)
-                          .reverse(comment => comment)
                           .map(comment =>
                             <div key={ comment.id }>
                               <p className="comment-meta">

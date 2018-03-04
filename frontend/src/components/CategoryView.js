@@ -5,6 +5,13 @@ import SortBy from './SortBy.js';
 
 class CategoryView extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      cat: '',
+    }
+  }
+
   componentWillMount () {
     this.props.updateCats();
     this.props.updatePosts();
@@ -16,9 +23,9 @@ class CategoryView extends Component {
       <section id="content">
 
         {Object.values(this.props.categories)
-          .filter(category => category.path === this.props.match.params.category)
+          .filter(category => category.path === this.props.cat)
           .map(category =>
-            <div>
+            <div key={ category.name }>
               <h2>Posts in <u>{category.name}</u></h2>
               <SortBy />
             </div>
@@ -26,7 +33,7 @@ class CategoryView extends Component {
         }
 
         {Object.values(this.props.posts)
-          .filter(post => post.category === this.props.match.params.category)
+          .filter(post => post.category === this.props.cat)
           .sort((post_a, post_b) => {
             if (this.props.sorting === 'date')
               return post_a.timestamp - post_b.timestamp;

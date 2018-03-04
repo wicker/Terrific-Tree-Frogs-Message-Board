@@ -18,7 +18,8 @@ class EditPost extends Component {
       category: '',
       voteScore: '',
       redirect: false,
-      refPost: {}
+      refPost: {},
+      is404: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -53,11 +54,13 @@ class EditPost extends Component {
 
   componentWillMount() {
     this.props.updatePosts()
+      .then(() => this.setState({ isLoaded: true }))
+      .then(() => this.checkPostExistence())
       .then(() =>
         this.setState({
           refPost: this.props.posts.filter(post => post.id === this.state.id),
-        })
-      ).then(() =>
+        }))
+      .then(() =>
         this.setState({
           title: this.state.refPost[0].title,
           body: this.state.refPost[0].body,
@@ -65,14 +68,31 @@ class EditPost extends Component {
           author: this.state.refPost[0].author,
           voteScore: this.state.refPost[0].voteScore,
           timestamp: this.state.refPost[0].timestamp
-        })
-      );
+        }))
+      .then(() => console.log('test'))
+  }
+
+  checkPostExistence() {
+    const postResult = Object.values(this.props.posts)
+      .filter(post => post.id === this.props.match.params.post_id);
+
+    if (postResult.length === 0) {
+      this.setState({ is404: true });
+    } else {
+      this.setState({ is404: false });
+    }
   }
 
   render () {
+
     if (this.state.redirect) {
       return (<Redirect to={'/' + this.state.category + '/' + this.state.id} />);
+    } else if (!this.state.isLoaded) {
+      return ('')
+    } else if (this.state.is404) {
+      return (<Redirect to="/404" />)
     } else {
+
       return (
 
         <section id="content">
