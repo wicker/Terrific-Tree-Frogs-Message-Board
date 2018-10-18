@@ -36,8 +36,6 @@ Your browser should automatically open to the correct page.
 
 ![](img/view_post.png)
 
-![](img/edit_post.png)
-
 ![](img/redux_devtools.png)
 
 ### Design Notes
