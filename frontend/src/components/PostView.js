@@ -12,7 +12,7 @@ class PostView extends Component {
     is404: false
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.updatePosts();
     this.props.updateComments(this.props.match.params.post_id)
       .then(() => this.setState({ isLoaded: true }))

@@ -12,7 +12,7 @@ class CategoryView extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.updateCats();
     this.props.updatePosts();
   }

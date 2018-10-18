@@ -47,7 +47,7 @@ class EditComment extends Component {
     this.setState({ redirect: true });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.updatePosts();
     this.props.updateComments(this.props.match.params.post_id)
       .then(() =>

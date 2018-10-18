@@ -5,7 +5,7 @@ import SortBy from './SortBy.js';
 
 class PostIndexView extends Component {
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.updatePosts();
   }
 

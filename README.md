@@ -53,4 +53,4 @@ The code uses ES6 features and extensively depends on the higher-order .map and 
 ### Future Improvements
 
 - Support uploading images
-
+- Fix hard-coded category rendering logic

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import Sidebar from './Sidebar.js';
+import Nav from './Nav.js';
 import Header from './Header.js';
 import PostIndexView from './PostIndexView.js';
 import CategoryView from './CategoryView.js';
@@ -27,9 +27,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="wrapper">
-          <Sidebar />
-          <div>
+          <Nav />
+          <div className="wrapper">
             <Switch>
               <Route exact path="/" component={PostIndexView} />
               <Route path='/add' component={AddPost} />
@@ -41,7 +40,6 @@ class App extends Component {
               <Route path="*" component={NotFound404} />
             </Switch>
           </div>
-        </div>
       </div>
     );
   }

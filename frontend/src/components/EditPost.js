@@ -52,7 +52,7 @@ class EditPost extends Component {
     this.setState({ redirect: true });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.updatePosts()
       .then(() => this.setState({ isLoaded: true }))
       .then(() => this.checkPostExistence())

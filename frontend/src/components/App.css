@@ -13,8 +13,7 @@ h3 {
 
 #content {
   width: 70%;
-  float: right;
-  margin: 20px 0 0 0;
+  margin: 20px auto;
 }
 
 .wrapper {
@@ -86,53 +85,48 @@ h3 {
   text-decoration: none;
 }
 
-/* Sidebar */
+/* Top Nav */
 
-#sidebar {
-  margin: 20px 0 0 0;
-  width: 25%;
-  float: left;
-}
-
-#sidebar h1 {
-  background-color: #400080;
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
-  margin: 10px 0 0 0;
-  font-size: 1.8em;
-  color: #d8cce5;
-}
-
-#sidebar .add-post {
-  margin: 10px 0 20px 0;
-  border-radius: 10px;
-}
-
-#sidebar .add-post a:hover {
-  border-radius: 10px;
-}
-
-#sidebar ul {
-  padding: 0;
-  margin: 0 0 20px 0;
-  list-style-type: none;
-  color: #000;
+#nav {
   background-color: #794ca6;
-  border-radius: 0 0 10px 10px;
-}
-
-#sidebar li {
-  line-height: 60px;
-  font-size: 1.3em;
-}
-
-#sidebar ul li a {
-  display: block;
   color: #fff;
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
 }
 
-#sidebar ul li a:hover {
+#nav .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 860px;
+}
+
+#nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0
+}
+
+#nav li {
+  display: inline;
+  font-size: 1.3em;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+
+#nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+#nav ul li a:hover {
   background-color: #400080;
+}
+
+#nav .plus {
+  color: #
 }
 
 /* Post */
@@ -141,7 +135,6 @@ h3 {
   padding: 0;
   margin: 0 0 40px;
   color: #000;
-  border-radius: 10px;
 }
 
 .post h2 {
@@ -149,7 +142,6 @@ h3 {
   padding: 10px;
   margin: 10px 0 0 0;
   font-size: 2em;
-  border-radius: 10px 10px 0 0;
   color: #ebe5f2;
 }
 
@@ -205,10 +197,6 @@ h3 {
   margin: 0;
   padding: 20px;
   background-color: #b299cc;
-}
-
-.add-comment {
-  border-radius: 0 0 20px 20px;
 }
 
 .comment-meta {
